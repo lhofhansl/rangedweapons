@@ -122,7 +122,7 @@ end
 end 
 
 
-minetest.sound_play("default_dig_cracky", {self.object:get_pos(), gain = 1.0})
+minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
 
 if ignite > 0 then
 
@@ -133,7 +133,7 @@ end
 
 if minetest.get_node(moveresult.collisions[1].node_pos).name == "tnt:tnt" then
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "tnt:tnt_burning"})
-	minetest.sound_play("tnt_ignite", {moveresult.collisions[1].node_pos}, true)
+	minetest.sound_play("tnt_ignite", {pos = moveresult.collisions[1].node_pos}, true)
 	minetest.get_node_timer(moveresult.collisions[1].node_pos):start(3)
 	minetest.check_for_falling(moveresult.collisions[1].node_pos)
 end
@@ -146,7 +146,7 @@ if string.find(minetest.get_node(moveresult.collisions[1].node_pos).name,"door_w
 
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
 minetest.add_item(moveresult.collisions[1].node_pos, "default:wood 5")
-minetest.sound_play("rangedweapons_woodbreak",{moveresult.collisions[1].node_pos})
+minetest.sound_play("rangedweapons_woodbreak",{pos = moveresult.collisions[1].node_pos})
 
 end end
 
@@ -156,18 +156,18 @@ local nodeName = minetest.get_node(moveresult.collisions[1].node_pos).name
 
 	if nodeName == "default:glass" then
 	minetest.swap_node(moveresult.collisions[1].node_pos, {name = "rangedweapons:broken_glass"})
-minetest.sound_play("glass_break",{moveresult.collisions[1].node_pos})
+minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
 	end
 	if   nodeName == "xpanes:pane" or
 		nodeName == "xpanes:pane_flat" then
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
 minetest.add_item(moveresult.collisions[1].node_pos, "rangedweapons:glass_shards")
-minetest.sound_play("glass_break",{moveresult.collisions[1].node_pos})
+minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
 	end
 if string.find(nodeName,"door_glass") then
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
 minetest.add_item(moveresult.collisions[1].node_pos, "vessels:glass_fragments 5")
-minetest.sound_play("glass_break",{moveresult.collisions[1].node_pos})
+minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
 	end
 end
 
@@ -215,7 +215,7 @@ if math.random(1,100) <= nodePen then
 		glow = 2,
 	})
 	end
-minetest.sound_play("default_dig_cracky", {self.object:get_pos(), gain = 1.0})
+minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
 self.object:set_properties({collisionbox = {0,0,0,0,0,0}})
 --minetest.chat_send_all("hit")
 self.object:set_velocity(moveresult.collisions[1].old_velocity)
@@ -223,7 +223,7 @@ else
 
 if minetest.get_item_group(minetest.get_node(moveresult.collisions[1].node_pos).name, "leaves") > 0  then
 
-minetest.sound_play("default_dig_snappy", {self.object:get_pos(), gain = 1.5})
+minetest.sound_play("default_dig_snappy", {pos = self.object:get_pos(), gain = 1.5})
 
 for i = 1,math.random(3,6) do
 	minetest.add_particle({
@@ -342,7 +342,7 @@ if math.random(1,100) <= mobPen then
 		glow = 2,
 	})
 	end
-minetest.sound_play("default_dig_cracky", {self.object:get_pos(), gain = 1.0})
+minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
 self.object:set_properties({collisionbox = {0,0,0,0,0,0}})
 self.object:set_velocity(moveresult.collisions[1].old_velocity)
 else

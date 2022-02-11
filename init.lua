@@ -23,7 +23,7 @@ minetest.register_node("rangedweapons:antigun_block", {
 ----
 
 make_sparks = function(pos)
-minetest.sound_play("rengedweapons_ricochet", {pos, gain = 0.75})
+minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75})
 	for i=1,9 do
 	minetest.add_particle({
 		pos = pos, 
@@ -62,7 +62,7 @@ if GunCaps ~= nil then
 gun_unload_sound = GunCaps.gun_unload_sound or ""
 end
 
-minetest.sound_play(gun_unload_sound, {player})
+minetest.sound_play(gun_unload_sound, {pos = player:get_pos()})
 
 
 local gun_reload = 0.25
@@ -169,7 +169,7 @@ if GunCaps ~= nil then
 gun_unload_sound = GunCaps.gun_unload_sound or ""
 end
 
-minetest.sound_play(gun_unload_sound, {player})
+minetest.sound_play(gun_unload_sound, {pos = player:get_pos()})
 
 local gun_reload = 0.25
 
@@ -351,7 +351,7 @@ rangedweapons_shoot_gun = function(itemstack, player)
 
 if minetest.find_node_near(player:getpos(), 10,"rangedweapons:antigun_block")
 then
-minetest.sound_play("rangedweapons_empty", {player})
+minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()})
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","Guns are prohibited in this area!"))
 
 else
@@ -546,7 +546,7 @@ rangedweapons_shoot_powergun = function(itemstack, player)
 
 if minetest.find_node_near(player:getpos(), 10,"rangedweapons:antigun_block")
 then
-minetest.sound_play("rangedweapons_empty", {player})
+minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()})
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","Guns are prohibited in this area!"))
 else
 local power_cooldown = 0
@@ -661,7 +661,7 @@ rangedweapons_launch_projectile = function(player,projNum,projDmg,projEnt,visual
 		local svertical = player:get_look_vertical()
 
 		if pos and dir and yaw then
-		minetest.sound_play(shoot_sound, {player})
+		minetest.sound_play(shoot_sound, {pos = pos, max_hear_distance = 500})
 		pos.y = pos.y + 1.45
 
 	if has_shell > 0 then
@@ -739,8 +739,8 @@ local gunMeta = itemstack:get_meta()
 
 local bulletStack = ItemStack({name = gunMeta:get_string("RW_ammo_name")})
 
-minetest.sound_play(rldsound, {player})
 		local pos = player:get_pos()
+minetest.sound_play(rldsound, {pos = pos})
 		local dir = player:get_look_dir()
 		local yaw = player:get_look_yaw()
 		if pos and dir and yaw then

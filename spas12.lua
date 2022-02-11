@@ -53,8 +53,8 @@ minetest.register_tool("rangedweapons:spas12_uld", {
 		description = "" ..core.colorize("#35cdff","spas-12\n") ..core.colorize("#FFFFFF", "Ranged damage: 2\n") ..core.colorize("#FFFFFF", "projectiles: 6\n") ..core.colorize("#FFFFFF", "Gun gravity: 3\n") ..core.colorize("#FFFFFF", "Accuracy: 52%\n")..core.colorize("#FFFFFF", "knockback: 7\n") ..core.colorize("#FFFFFF", "Critical chance: 7%\n") ..core.colorize("#FFFFFF", "Critical efficiency: 2.1x\n") ..core.colorize("#FFFFFF", "Ammunition: 12 gauge shells\n") ..core.colorize("#FFFFFF", "Pump delay: 0.45\n")..core.colorize("#FFFFFF", "Clip size: 8\n") ..core.colorize("#be0d00", "Right-click, to eject the empty shell!\n") ..core.colorize("#fff21c", "Right-click to load in a bullet!\n")  ..core.colorize("#FFFFFF", "Gun type: shotgun\n") ..core.colorize("#FFFFFF", "Bullet velocity: 28"),
 	inventory_image = "rangedweapons_spas12.png",
 	groups = {not_in_creative_inventory = 1},
-	on_use = function(user)
-		minetest.sound_play("rangedweapons_empty", {user})
+	on_use = function(itemstack, user)
+		minetest.sound_play("rangedweapons_empty", {pos = user:get_pos()})
 	end,
 on_secondary_use = function(itemstack, user, pointed_thing)
 eject_shell(itemstack,user,"rangedweapons:spas12_rld",0.6,"rangedweapons_shotgun_reload_a","rangedweapons:empty_shell")

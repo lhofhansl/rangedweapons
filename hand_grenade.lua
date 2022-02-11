@@ -56,7 +56,7 @@ then
 		end
 
 		gtimer = 0
-	minetest.sound_play("rangedweapons_reload_a", {user})
+	minetest.sound_play("rangedweapons_reload_a", {pos = user:get_pos()})
 		itemstack = "rangedweapons:hand_grenade_nopin"
 local pos = user:get_pos()
 pos.y = pos.y + 1.5

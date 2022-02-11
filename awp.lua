@@ -8,8 +8,8 @@ minetest.register_tool("rangedweapons:awp_uld", {
 	groups = {not_in_creative_inventory = 1},
 	inventory_image = "rangedweapons_awp.png",
 	weapon_zoom = 7.5,
-	on_use = function(user)
-		minetest.sound_play("rangedweapons_empty", {user})
+	on_use = function(itemstack, user)
+		minetest.sound_play("rangedweapons_empty", {pos = user:get_pos()})
 	end,
 on_secondary_use = function(itemstack, user, pointed_thing)
 eject_shell(itemstack,user,"rangedweapons:awp_rld",1.0,"rangedweapons_rifle_reload_a","rangedweapons:empty_shell")
