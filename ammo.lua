@@ -24,7 +24,7 @@ initial_properties = {
 	visual_size = {x=0.75, y=0.75},
 	textures = {"rangedweapons:shot_bullet_visual"},
 	lastpos = {},
-        collide_with_objects = false,
+        collide_with_objects = true,
 	collisionbox = {-0.0025, -0.0025, -0.0025, 0.0025, 0.0025, 0.0025},
 },
 }
@@ -60,7 +60,7 @@ end end
 
 self.timer = self.timer + dtime
 
-if self.timer > 0.06 then
+if self.timer >= 0 then
 self.object:set_properties({collide_with_objects = true})
 self.object:set_properties({collisionbox = {-size, -size, -size, size, size, size}})
 end
@@ -255,7 +255,7 @@ end
 
 end
 
-if moveresult.collisions[1].type == "object" then
+if moveresult.collisions[1].type == "object" and (not moveresult.collisions[1].object:is_player() or moveresult.collisions[1].object:get_player_name() ~= self.owner) then
 
 
 local actualDamage = self.damage or {fleshy=1}
@@ -268,44 +268,43 @@ local dps = self.dps or 0
 local skill = self.skill_value or 1
 
 for _, dmg in pairs(actualDamage) do
-damage[_] = actualDamage[_]
+    damage[_] = actualDamage[_]
 end
-
 if moveresult.collisions[1].object:is_player() then
-for _, player_dmg in pairs(damage) do
-damage[_] = damage[_] * rweapons_player_dmg_multiplier
-end
-if self.object:get_pos().y - moveresult.collisions[1].object:get_pos().y > 1.5 then
-for _, hs_dmg in pairs(damage) do
-damage[_] = damage[_] * rweapons_headshot_dmg_multiplier
-end
-end 
-knockback = damage.knockback or 0
-projectile_kb(moveresult.collisions[1].object,self.object,knockback)
+   for _, player_dmg in pairs(damage) do
+       damage[_] = damage[_] * rweapons_player_dmg_multiplier
+   end
+   if self.object:get_pos().y - moveresult.collisions[1].object:get_pos().y > 1.5 then
+      for _, hs_dmg in pairs(damage) do
+      	  damage[_] = damage[_] * rweapons_headshot_dmg_multiplier
+      end
+   end 
+   knockback = damage.knockback or 0
+   projectile_kb(moveresult.collisions[1].object,self.object,knockback)
 else
-for _, mob_dmg in pairs(damage) do
-damage[_] = damage[_] * rweapons_mob_dmg_multiplier
-end
+   for _, mob_dmg in pairs(damage) do
+       damage[_] = damage[_] * rweapons_mob_dmg_multiplier
+   end
 end
 
 for _, bonus_dmg in pairs(damage) do
-damage[_] = (damage[_]*skill) + (self.dps*self.timer)
+    damage[_] = (damage[_]*skill) + (self.dps*self.timer)
 end
 
 --minetest.chat_send_all(critEffc)
 if math.random(1,100) <= crit+((skill*10)-10) then
-for _, critDmg in pairs(damage) do
-damage[_] = damage[_] * critEffc
-end
+   for _, critDmg in pairs(damage) do
+       damage[_] = damage[_] * critEffc
+   end
 
 
-entpos = self.object:get_pos()
-minetest.add_particle	({
-pos = entpos, velocity = 0, acceleration = {x=0, y=5, z=0},
-expirationtime = 0.75, size = 12, collisiondetection = false,
-vertical = false, texture = "rangedweapons_crit.png", glow = 30,})
-hit_texture = "rangedweapons_crithit.png"
-end
+   entpos = self.object:get_pos()
+   minetest.add_particle	({
+   	pos = entpos, velocity = 0, acceleration = {x=0, y=5, z=0},
+	expirationtime = 0.75, size = 12, collisiondetection = false,
+	vertical = false, texture = "rangedweapons_crit.png", glow = 30,})
+	hit_texture = "rangedweapons_crithit.png"
+   end
 
 moveresult.collisions[1].object:punch(owner, 1.0, {
 		full_punch_interval = 1.0,
