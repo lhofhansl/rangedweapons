@@ -71,6 +71,7 @@ if GunCaps ~= nil then
 gun_reload = GunCaps.gun_reload or 0.25
 end
 
+local inf_ammo = minetest.settings:get_bool("infinite_ammo") or false
 local playerMeta = player:get_meta()
 local gunMeta = itemstack:get_meta()
 
@@ -122,15 +123,18 @@ local ammoCount = gunMeta:get_int("RW_bullets")
 local ammoName = gunMeta:get_string("RW_ammo_name")
 local inv = player:get_inventory()
 
-inv:add_item("main",ammoName.." "..ammoCount)
-
-
-if inv:contains_item("main",reload_ammo:get_name().." "..clipSize) then
-inv:remove_item("main",reload_ammo:get_name().." "..clipSize)
-gunMeta:set_int("RW_bullets",clipSize)
+if inf_ammo then
+  gunMeta:set_int("RW_bullets",clipSize)
 else
-gunMeta:set_int("RW_bullets",reload_ammo:get_count())
-inv:remove_item("main",reload_ammo:get_name().." "..reload_ammo:get_count())
+  inv:add_item("main",ammoName.." "..ammoCount)
+
+  if inv:contains_item("main",reload_ammo:get_name().." "..clipSize) then
+    inv:remove_item("main",reload_ammo:get_name().." "..clipSize)
+    gunMeta:set_int("RW_bullets",clipSize)
+  else
+    gunMeta:set_int("RW_bullets",reload_ammo:get_count())
+    inv:remove_item("main",reload_ammo:get_name().." "..reload_ammo:get_count())
+  end
 end
 
 gunMeta:set_string("RW_ammo_name",reload_ammo:get_name())

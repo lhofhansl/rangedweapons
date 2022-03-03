@@ -1,0 +1,2 @@
+#    If true, a gun can always be reloaded (just need at least one matching bullet in the inventory)
+infinite_ammo (Inifinite Ammo) bool false
