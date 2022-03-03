@@ -679,7 +679,7 @@ if smokeSize > 0 then
 		velocity = {x=(dir.x*3)+(math.random(-10,10)/10), y=(dir.y*3)+(math.random(-10,10)/10), z=(dir.z*3)+(math.random(-10,10)/10)} ,
           	acceleration = {x=dir.x * -3, y=2, z=dir.z * -3},
 		expirationtime = math.random(5,10)/10,
-		size = smokeSize,
+		size = smokeSize / 2,
 		collisiondetection = false,
 		vertical = false,
 		texture = "tnt_smoke.png",
