@@ -7,7 +7,7 @@ minetest.register_tool("rangedweapons:forcegun", {
 
 		local pos = user:get_pos()
 		local dir = user:get_look_dir()
-		local yaw = user:get_look_yaw()
+		local yaw = user:get_look_horizontal()
 		local inv = user:get_inventory()
 if  inv:contains_item("main", "rangedweapons:power_particle 40") then
 		if pos and dir then
@@ -18,7 +18,7 @@ if  inv:contains_item("main", "rangedweapons:power_particle 40") then
 				minetest.sound_play("rangedweapons_rocket", {object=obj})
 				obj:set_velocity({x=dir.x * 60, y=dir.y * 60, z=dir.z * 60})
 
-				obj:setyaw(yaw + math.pi)
+				obj:setyaw(yaw - math.pi/2)
 				proj_dir = dir
 				local ent = obj:get_luaentity()
 				if ent then

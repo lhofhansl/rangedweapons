@@ -63,11 +63,11 @@ pos.y = pos.y + 1.5
 local pinEnt = minetest.add_entity(pos, "rangedweapons:grenade_pin")
 if pinEnt then
 local dir = user:get_look_dir()
-local yaw = user:get_look_yaw()
+local yaw = user:get_look_horizontal()
 local svertical = user:get_look_vertical()
 pinEnt:set_velocity({x=dir.x * -10, y=dir.y * -10, z=dir.z * -10})
 pinEnt:set_acceleration({x=dir.x * -5, y= -10, z=dir.z * -5})
-pinEnt:set_rotation({x=0,y=yaw + math.pi,z=-svertical})
+pinEnt:set_rotation({x=0,y=yaw - math.pi/2,z=-svertical})
 end
 	 return itemstack end,
 })
@@ -84,14 +84,14 @@ minetest.register_craftitem("rangedweapons:hand_grenade_nopin", {
 	on_use = function(itemstack, user, pointed_thing)
 		local pos = user:get_pos()
 		local dir = user:get_look_dir()
-		local yaw = user:get_look_yaw()
+		local yaw = user:get_look_horizontal()
 		if pos and dir and yaw then
 			pos.y = pos.y + 1.6
 			local obj = minetest.add_entity(pos, "rangedweapons:grenade")
 			if obj then
 				obj:set_velocity({x=dir.x * 12, y=dir.y * 12, z=dir.z * 12})
 				obj:set_acceleration({x=0, y=-6, z=0})
-				obj:set_yaw(yaw + math.pi)
+				obj:set_yaw(yaw - math.pi/2)
 				btimer = gtimer
 				local ent = obj:get_luaentity()
 				if ent then
