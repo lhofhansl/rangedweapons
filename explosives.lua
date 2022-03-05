@@ -36,7 +36,7 @@ local rangedweapons_rocket = {
 rangedweapons_rocket.on_step = function(self, dtime, pos)
 	self.timer = self.timer + dtime
 	local tiem = 0.002
-	local pos = self.object:getpos()
+	local pos = self.object:get_pos()
 	local node = minetest.get_node(pos)
 	if self.timer >= 0.002 then
 	minetest.add_particle({
@@ -102,7 +102,7 @@ local rangedweapons_he_grenade = {
 rangedweapons_he_grenade.on_step = function(self, dtime, pos)
 	self.timer = self.timer + dtime
 	local tiem = 0.002
-	local pos = self.object:getpos()
+	local pos = self.object:get_pos()
 	local node = minetest.get_node(pos)
 	if self.timer >= 0.002 then
 	minetest.add_particle({

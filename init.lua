@@ -257,7 +257,7 @@ end
 
 rangedweapons_yeet = function(itemstack, player)
 
-if minetest.find_node_near(player:getpos(), 10,"rangedweapons:antigun_block")
+if minetest.find_node_near(player:get_pos(), 10,"rangedweapons:antigun_block")
 then
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","throwable weapons are prohibited in this area!"))
 else
@@ -353,7 +353,7 @@ end
 
 rangedweapons_shoot_gun = function(itemstack, player)
 
-if minetest.find_node_near(player:getpos(), 10,"rangedweapons:antigun_block")
+if minetest.find_node_near(player:get_pos(), 10,"rangedweapons:antigun_block")
 then
 minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()})
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","Guns are prohibited in this area!"))
@@ -548,7 +548,7 @@ end end
 
 rangedweapons_shoot_powergun = function(itemstack, player)
 
-if minetest.find_node_near(player:getpos(), 10,"rangedweapons:antigun_block")
+if minetest.find_node_near(player:get_pos(), 10,"rangedweapons:antigun_block")
 then
 minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()})
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","Guns are prohibited in this area!"))
@@ -669,8 +669,8 @@ rangedweapons_launch_projectile = function(player,projNum,projDmg,projEnt,visual
 
 	if has_shell > 0 then
 	local shl = minetest.add_entity(pos, shellEnt)
-shl:setvelocity({x=dir.x * -10, y=dir.y * -10, z=dir.z * -10})
-shl:setacceleration({x=dir.x * -5, y= -10, z=dir.z * -5})
+shl:set_velocity({x=dir.x * -10, y=dir.y * -10, z=dir.z * -10})
+shl:set_acceleration({x=dir.x * -5, y= -10, z=dir.z * -5})
 shl:set_rotation({x=0,y=yaw + math.pi,z=-svertical})
 shl:set_properties({
 textures = {shellTexture},

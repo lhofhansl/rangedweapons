@@ -65,8 +65,8 @@ if pinEnt then
 local dir = user:get_look_dir()
 local yaw = user:get_look_yaw()
 local svertical = user:get_look_vertical()
-pinEnt:setvelocity({x=dir.x * -10, y=dir.y * -10, z=dir.z * -10})
-pinEnt:setacceleration({x=dir.x * -5, y= -10, z=dir.z * -5})
+pinEnt:set_velocity({x=dir.x * -10, y=dir.y * -10, z=dir.z * -10})
+pinEnt:set_acceleration({x=dir.x * -5, y= -10, z=dir.z * -5})
 pinEnt:set_rotation({x=0,y=yaw + math.pi,z=-svertical})
 end
 	 return itemstack end,
