@@ -56,10 +56,11 @@ end
 
 rangedweapons_reload_gun = function(itemstack, player)
 
-GunCaps = itemstack:get_definition().RW_gun_capabilities
+local GunCaps = itemstack:get_definition().RW_gun_capabilities
 
+local gun_unload_sound = ""
 if GunCaps ~= nil then
-gun_unload_sound = GunCaps.gun_unload_sound or ""
+   gun_unload_sound = GunCaps.gun_unload_sound or ""
 end
 
 minetest.sound_play(gun_unload_sound, {pos = player:get_pos()})
@@ -68,7 +69,7 @@ minetest.sound_play(gun_unload_sound, {pos = player:get_pos()})
 local gun_reload = 0.25
 
 if GunCaps ~= nil then
-gun_reload = GunCaps.gun_reload or 0.25
+   gun_reload = GunCaps.gun_reload or 0.25
 end
 
 local inf_ammo = minetest.settings:get_bool("infinite_ammo") or false
@@ -167,7 +168,7 @@ end
 
 rangedweapons_single_load_gun = function(itemstack, player)
 
-GunCaps = itemstack:get_definition().RW_gun_capabilities
+local GunCaps = itemstack:get_definition().RW_gun_capabilities
 
 if GunCaps ~= nil then
 gun_unload_sound = GunCaps.gun_unload_sound or ""
@@ -335,10 +336,9 @@ if throw_skillChance > 0 and throw_skill ~= "" then
 rangedweapons_gain_skill(player,throw_skill,throw_skillChance)
 end
 
+local skill_value = 1
 if throw_skill ~= "" then
-skill_value = playerMeta:get_int(throw_skill)/100
-else
-skill_value = 1
+   skill_value = playerMeta:get_int(throw_skill)/100
 end
 
 rangedweapons_launch_projectile(player,throw_projectiles,throw_damage,throw_ent,throw_visual,throw_texture,throw_sound,throw_velocity,throw_accuracy,skill_value,OnCollision,throw_crit,throw_critEffc,throw_mobPen,throw_nodePen,0,"","","",throw_dps,throw_gravity,throw_door_breaking,throw_glass_breaking,throw_particles,throw_sparks,throw_bomb_ignite,throw_size,0,itemstack:get_wear(),throw_glow)
@@ -392,7 +392,7 @@ end
 local OnCollision = function() end
 
 local bulletStack = ItemStack({name = gunMeta:get_string("RW_ammo_name")})
-AmmoCaps = bulletStack:get_definition().RW_ammo_capabilities
+local AmmoCaps = bulletStack:get_definition().RW_ammo_capabilities
 
 local gun_damage = {fleshy=1}
 local gun_sound = "rangedweapons_glock"
@@ -401,6 +401,7 @@ local gun_accuracy = 100
 local gun_cooling = 0
 local gun_crit = 0
 local gun_critEffc = 1
+local gun_projectiles = 1
 local gun_mobPen = 0
 local gun_nodePen = 0
 local gun_shell = 0
@@ -527,10 +528,9 @@ end
 
 --minetest.chat_send_all(minetest.serialize(combined_dmg))
 
+local skill_value = 1
 if gun_skill ~= "" then
-skill_value = playerMeta:get_int(gun_skill)/100
-else
-skill_value = 1
+   skill_value = playerMeta:get_int(gun_skill)/100
 end
 
 rangedweapons_launch_projectile(player,combined_projNum,combined_dmg,bullet_ent,bullet_visual,bullet_texture,gun_sound,combined_velocity,gun_accuracy,skill_value,OnCollision,combined_crit,combined_critEffc,combined_mobPen,combined_nodePen,gun_shell,bullet_shell_ent,bullet_shell_texture,bullet_shell_visual,combined_dps,combined_gravity,gun_door_breaking,bullet_glass_breaking,bullet_particles,bullet_sparks,bullet_bomb_ignite,bullet_size,gun_smokeSize,0,bullet_glow)
@@ -636,10 +636,9 @@ if power_skillChance > 0 and power_skill ~= "" then
 rangedweapons_gain_skill(player,power_skill,power_skillChance)
 end
 
+local skill_value = 1
 if power_skill ~= "" then
-skill_value = playerMeta:get_int(power_skill)/100
-else
-skill_value = 1
+   skill_value = playerMeta:get_int(power_skill)/100
 end
 
 rangedweapons_launch_projectile(player,power_projectiles,power_damage,power_ent,power_visual,power_texture,power_sound,power_velocity,power_accuracy,skill_value,OnCollision,power_crit,power_critEffc,power_mobPen,power_nodePen,0,"","","",power_dps,power_gravity,power_door_breaking,power_glass_breaking,power_particles,power_sparks,power_bomb_ignite,power_size,0,0,power_glow)
@@ -691,7 +690,7 @@ if smokeSize > 0 then
 	})
 end
 
-	projectiles = projNum or 1
+	local projectiles = projNum or 1
 	for i=1,projectiles do
 			local obj = minetest.add_entity(pos, projEnt)
 			local ent = obj:get_luaentity()
@@ -720,7 +719,7 @@ glow = proj_glow,}
 			ent.size = size
 			ent.timer = 0 + (combined_velocity/2000)
 			ent.wear = proj_wear
-			acc = ((( 100 - accuracy ) / 10) / skill_value ) or 0
+			local acc = ((( 100 - accuracy ) / 10) / skill_value ) or 0
 			obj:set_velocity({x=dir.x * combined_velocity + math.random(-acc,acc), y=dir.y * combined_velocity + math.random(-acc,acc), z=dir.z * combined_velocity + math.random(-acc,acc)})
 			obj:set_acceleration({x=0, y=-gravity, z=0})
 obj:set_rotation({x=0,y=yaw + math.pi,z=-svertical})
@@ -746,8 +745,8 @@ minetest.sound_play(rldsound, {pos = pos})
 			pos.y = pos.y + 1.6
 			local obj = minetest.add_entity(pos, "rangedweapons:empty_shell")
 
-if AmmoCaps and bulletStack ~= "" then
-AmmoCaps = bulletStack:get_definition().RW_ammo_capabilities
+if bulletStack ~= "" then
+local AmmoCaps = bulletStack:get_definition().RW_ammo_capabilities
 
 local bullet_shell_visual = "wielditem"
 local bullet_shell_texture = "rangedweapons:shelldrop"

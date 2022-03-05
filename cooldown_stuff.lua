@@ -26,18 +26,18 @@ local wpn_zoom = w_item:get_definition().weapon_zoom
 end
 
 if w_item:get_definition().weapon_zoom == nil then
-player:hud_change(scope_hud, "text", "rangedweapons_empty_icon.png")
+	player:hud_change(scope_hud, "text", "rangedweapons_empty_icon.png")
 	if player:get_inventory():contains_item(
 			"main", "binoculars:binoculars") then
-		new_zoom_fov = 10
-	if player:get_properties().zoom_fov ~= new_zoom_fov then
-		player:set_properties({zoom_fov = new_zoom_fov})
-	end
+		local new_zoom_fov = 10
+		if player:get_properties().zoom_fov ~= new_zoom_fov then
+		   player:set_properties({zoom_fov = new_zoom_fov})
+		end
 	else 
-		new_zoom_fov = 0
-	if player:get_properties().zoom_fov ~= new_zoom_fov then
-		player:set_properties({zoom_fov = new_zoom_fov})
-	end
+		local new_zoom_fov = 0
+		if player:get_properties().zoom_fov ~= new_zoom_fov then
+		   player:set_properties({zoom_fov = new_zoom_fov})
+		end
 	end
 end
 
@@ -90,7 +90,7 @@ if player:get_wielded_item():get_definition().rw_next_reload ~= nil then
 	if itemstack:get_definition().load_sound ~= nil then
 minetest.sound_play(itemstack:get_definition().load_sound, {pos = player:get_pos()})
 	end
-	gunMeta = itemstack:get_meta()
+	local gunMeta = itemstack:get_meta()
 	u_meta:set_float("rw_cooldown",gunMeta:get_float("RW_reload_delay"))
 	itemstack:set_name(player:get_wielded_item():get_definition().rw_next_reload)
 	player:set_wielded_item(itemstack)
