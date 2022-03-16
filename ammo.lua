@@ -298,7 +298,7 @@ if math.random(1,100) <= crit+((skill*10)-10) then
    end
 
 
-   entpos = self.object:get_pos()
+   local entpos = self.object:get_pos()
    minetest.add_particle	({
    	pos = entpos, velocity = 0, acceleration = {x=0, y=5, z=0},
 	expirationtime = 0.75, size = 12, collisiondetection = false,

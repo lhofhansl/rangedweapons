@@ -1,3 +1,5 @@
+local proj_dir
+
 minetest.register_tool("rangedweapons:forcegun", {
 		description = "" ..core.colorize("#35cdff","Force gun\n") ..core.colorize("#FFFFFF", "Completelly harmless... by itself...\n")..core.colorize("#FFFFFF", "It's projectile will push either the entity it hits directly, or everyone near the node it collides with far away.\n")  ..core.colorize("#FFFFFF", "Perfect for rocket-jumping or YEETing enemies away.\n")..core.colorize("#FFFFFF", "Power usage: 40\n")..core.colorize("#FFFFFF", "Gun type:Power Special-gun\n") ..core.colorize("#FFFFFF", "Bullet velocity: 60"),
 	range = 0,
@@ -18,7 +20,7 @@ if  inv:contains_item("main", "rangedweapons:power_particle 40") then
 				minetest.sound_play("rangedweapons_rocket", {object=obj})
 				obj:set_velocity({x=dir.x * 60, y=dir.y * 60, z=dir.z * 60})
 
-				obj:setyaw(yaw - math.pi/2)
+				obj:set_yaw(yaw - math.pi/2)
 				proj_dir = dir
 				local ent = obj:get_luaentity()
 				if ent then
@@ -91,14 +93,14 @@ if moveresult.collisions[1].type == "node" then
 local objs = minetest.get_objects_inside_radius({x = pos.x, y = pos.y, z = pos.z}, 7)
 		for k, obj in pairs(objs) do
 
+local posd_x = 1
+local posd_y = 1
+local posd_z = 1
+
 if obj:get_pos() then
 posd_x = pos.x - obj:get_pos().x 
 posd_y = pos.y - obj:get_pos().y 
 posd_z = pos.z - obj:get_pos().z 
-else
-posd_x = 1
-posd_y = 1
-posd_z = 1
 end
 
 

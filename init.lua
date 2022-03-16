@@ -262,9 +262,10 @@ then
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","throwable weapons are prohibited in this area!"))
 else
 
-ThrowCaps = itemstack:get_definition().RW_throw_capabilities
-playerMeta = player:get_meta()
+local ThrowCaps = itemstack:get_definition().RW_throw_capabilities
+local playerMeta = player:get_meta()
 
+local throw_cooldown = 0
 if ThrowCaps ~= nil then
 throw_cooldown = ThrowCaps.throw_cooldown or 0
 end
@@ -297,6 +298,7 @@ local throw_sparks = 0
 local throw_bomb_ignite = 0
 local throw_size = 0
 local throw_glow = 0
+local OnCollision = function()end
 
 if ThrowCaps ~= nil then
 throw_damage = ThrowCaps.throw_damage or {fleshy=1}
@@ -554,8 +556,8 @@ minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()})
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","Guns are prohibited in this area!"))
 else
 local power_cooldown = 0
-
-PowerCaps = itemstack:get_definition().RW_powergun_capabilities
+local power_consumption = 0
+local PowerCaps = itemstack:get_definition().RW_powergun_capabilities
 
 if PowerCaps ~= nil then
 power_cooldown = PowerCaps.power_cooldown or 0
@@ -595,6 +597,7 @@ local power_sparks = 0
 local power_bomb_ignite = 0
 local power_size = 0
 local power_glow = 20
+local power_projectiles = 1
 
 if PowerCaps ~= nil then
 power_damage = PowerCaps.power_damage or {fleshy=1}
@@ -968,7 +971,7 @@ scope_hud =
 end)
 
 	local timer = 0
-minetest.register_globalstep(function(dtime, player)
+minetest.register_globalstep(function(dtime)
 	timer = timer + dtime;
 	if timer >= 1.0 then
 	for _, player in pairs(minetest.get_connected_players()) do
