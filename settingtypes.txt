@@ -1,2 +1,67 @@
+#    If true, a guns will wear off with use
+rangedweapons_gun_wear (Gun Usage-Wear) bool true
+
+#    If true, guns can be crafted
+rangedweapons_gun_crafting (Gun Crafting) bool true
+
+#    If true, items can be crafted
+rangedweapons_item_crafting (Item Crafting) bool true
+
+#    If true, ammonition can be crafted
+rangedweapons_ammo_crafting (Ammonition Crafting) bool true
+
+#    If true, other weapons can be crafted
+rangedweapons_other_weapon_crafting (Other Weapon Crafting) bool true
+
 #    If true, a gun can always be reloaded (just need at least one matching bullet in the inventory)
-infinite_ammo (Inifinite Ammo) bool false
+rangedweapons_infinite_ammo (Inifinite Ammo) bool false
+
+#    Damage multiplier for hits on other players
+rangedweapons_player_dmg_multiplier (Player Damage Multiplier) float 1.0
+
+#    Damage multiplier for head shots
+rangedweapons_headshot_dmg_multiplier (Headshot Damage Multiplier) float 1.75
+
+#    Damage multiplier for hits on mobs
+rangedweapons_mob_dmg_multiplier (Mob Damage Multiplier) float 1.0
+
+#    Amount of blood
+rangedweapons_bloodyness (Bloodyness) int 10
+
+#    Maximum Gun Skill (set to 100 to disable gaining skil)
+rangedweapons_max_gun_efficiency (Maximum Gun Skill) int 300
+
+#    Minimum Gun Skill (set to 100 to disable loosing skil)
+rangedweapons_min_gun_efficiency (Minimum Gun Skill) int 40
+
+rangedweapons_shurikens (Enable Shurikens) bool true
+
+rangedweapons_handguns (Enable Handgus) bool true
+
+rangedweapons_forceguns (Enable Force-Guns) bool true
+
+rangedweapons_javelins (Enable Javelins) bool true
+
+rangedweapons_power_weapons (Enable Power-Weapons) bool true
+
+rangedweapons_machine_pistols (Enable Pistols) bool true
+
+rangedweapons_shotguns (Enable Shotguns) bool true
+
+rangedweapons_auto_shotguns (Enable Auto-Shotguns) bool true
+
+rangedweapons_smgs (Enable Submachine Guns) bool true
+
+rangedweapons_rifles (Enable Rifles) bool true
+
+rangedweapons_assault_rifles (Enable Assault-Rifles) bool true
+
+rangedweapons_heavy_machineguns (Enable Heavy Machineguns) bool true
+
+rangedweapons_revolvers (Enable Revolvers) bool true
+
+rangedweapons_explosives (Enable Explosives) bool true
+
+rangedweapons_glass_breaking (Breaking Glass) bool true
+
+rangedweapons_door_breaking (Breaking Doors) bool true

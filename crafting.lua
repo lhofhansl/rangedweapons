@@ -1,6 +1,6 @@
 ----------------------------
 ----------------------------
-if rweapons_gun_crafting == "true" then
+if minetest.settings:get_bool("rangedweapons_gun_crafting", true) then
 
 minetest.register_craft({
 	output = "rangedweapons:aa12",
@@ -391,7 +391,7 @@ minetest.register_craft({
 end
 ----------------------------------
 ----------------------------------
-if rweapons_other_weapon_crafting == "true" then
+if minetest.settings:get_bool("rangedweapons_other_weapons_crafting", true) then
 
 minetest.register_craft({
 	output = "rangedweapons:barrel",
@@ -479,7 +479,7 @@ minetest.register_craft({
 end
 ------------------------------------
 ------------------------------------
-if rweapons_ammo_crafting == "true" then
+if minetest.settings:get_bool("rangedweapons_ammo_crafting", true) then
 
 minetest.register_craft({
 	output = "rangedweapons:9mm 40",
@@ -594,7 +594,7 @@ minetest.register_craft({
 end
 -------------------------------------
 -------------------------------------
-if rweapons_item_crafting == "true" then
+if minetest.settings:get_bool("rangedweapons_item_crafting", true) then
 
 minetest.register_craft({
 	output = "rangedweapons:generator",

@@ -39,13 +39,14 @@ minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75})
 end
 end
 
+local max_gun_efficiency = minetest.settings:get("rangedweapons_max_gun_efficiency") or 300
 
 rangedweapons_gain_skill = function(player,skill,chance)
 
 if math.random(1, chance) == 1 then
 	local p_meta = player:get_meta()
 local skill_num = p_meta:get_int(skill)
-if skill_num < rweapons_max_gun_efficiency then
+if skill_num < max_gun_efficiency then
 p_meta:set_int(skill, skill_num + 1)
     minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#25c200","You've improved your skill with this type of gun!"))
 end
@@ -72,7 +73,6 @@ if GunCaps ~= nil then
    gun_reload = GunCaps.gun_reload or 0.25
 end
 
-local inf_ammo = minetest.settings:get_bool("infinite_ammo") or false
 local playerMeta = player:get_meta()
 local gunMeta = itemstack:get_meta()
 
@@ -124,7 +124,7 @@ local ammoCount = gunMeta:get_int("RW_bullets")
 local ammoName = gunMeta:get_string("RW_ammo_name")
 local inv = player:get_inventory()
 
-if inf_ammo then
+if minetest.settings:get_bool("rangedweapons_infinite_ammo", false) then
   gunMeta:set_int("RW_bullets",clipSize)
 else
   inv:add_item("main",ammoName.." "..ammoCount)
@@ -537,7 +537,7 @@ end
 
 rangedweapons_launch_projectile(player,combined_projNum,combined_dmg,bullet_ent,bullet_visual,bullet_texture,gun_sound,combined_velocity,gun_accuracy,skill_value,OnCollision,combined_crit,combined_critEffc,combined_mobPen,combined_nodePen,gun_shell,bullet_shell_ent,bullet_shell_texture,bullet_shell_visual,combined_dps,combined_gravity,gun_door_breaking,bullet_glass_breaking,bullet_particles,bullet_sparks,bullet_bomb_ignite,bullet_size,gun_smokeSize,0,bullet_glow)
 
-if rweapons_gun_durability == "true" then
+if minetest.settings:get_bool("rangedweapons_gun_wear", true) then
 itemstack:add_wear(65535/gun_durability)
 end
 itemstack:set_name(gun_cooling)
@@ -646,7 +646,7 @@ end
 
 rangedweapons_launch_projectile(player,power_projectiles,power_damage,power_ent,power_visual,power_texture,power_sound,power_velocity,power_accuracy,skill_value,OnCollision,power_crit,power_critEffc,power_mobPen,power_nodePen,0,"","","",power_dps,power_gravity,power_door_breaking,power_glass_breaking,power_particles,power_sparks,power_bomb_ignite,power_size,0,0,power_glow)
 
-if rweapons_gun_durability == "true" then
+if minetest.settings:get_bool("rangedweapons_gun_wear", true) then
 itemstack:add_wear(65535/power_durability)
 end
 itemstack:set_name(power_cooling)
@@ -770,7 +770,6 @@ obj:set_acceleration({x=dir.x*-5, y=-10, z=dir.z*-5})
 
 
 
-dofile(modpath.."/settings.lua")
 dofile(modpath.."/cooldown_stuff.lua")
 dofile(modpath.."/skills.lua")
 dofile(modpath.."/misc.lua")
@@ -778,11 +777,11 @@ dofile(modpath.."/bullet_knockback.lua")
 dofile(modpath.."/ammo.lua")
 dofile(modpath.."/crafting.lua")
 
-if rweapons_shurikens == "true" then
+if minetest.settings:get_bool("rangedweapons_shurikens", true) then
 	dofile(modpath.."/shurikens.lua")
 end
 
-if rweapons_handguns == "true" then
+if minetest.settings:get_bool("rangedweapons_handguns", true) then
 	dofile(modpath.."/makarov.lua")
 	dofile(modpath.."/luger.lua")
 	dofile(modpath.."/beretta.lua")
@@ -791,64 +790,64 @@ if rweapons_handguns == "true" then
 	dofile(modpath.."/deagle.lua")
 end
 
-if rweapons_forceguns == "true" then
+if minetest.settings:get_bool("rangedweapon_forceguns", true) then
 	dofile(modpath.."/forcegun.lua")
 end
 
-if rweapons_javelins == "true" then
+if minetest.settings:get_bool("rangedweapons_javelins", true) then
 	dofile(modpath.."/javelin.lua")
 end
 
-if rweapons_power_weapons == "true" then
+if minetest.settings:get_bool("rangedweapons_power_weapons", true) then
 	dofile(modpath.."/generator.lua")
 	dofile(modpath.."/laser_blaster.lua")
 	dofile(modpath.."/laser_rifle.lua")
 	dofile(modpath.."/laser_shotgun.lua")
 end
 
-if rweapons_machine_pistols == "true" then
+if minetest.settings:get_bool("rangedweapons_machine_pistols", true) then
 	dofile(modpath.."/tmp.lua")
 	dofile(modpath.."/tec9.lua")
 	dofile(modpath.."/uzi.lua")
 	dofile(modpath.."/kriss_sv.lua")
 end
-if rweapons_shotguns == "true" then
+if minetest.settings:get_bool("rangedweapons_shotguns", true) then
 	dofile(modpath.."/remington.lua")
 	dofile(modpath.."/spas12.lua")
 	dofile(modpath.."/benelli.lua")
 end
-if rweapons_auto_shotguns == "true" then
+if minetest.settings:get_bool("rangedweapons_auto_shotguns", true) then
 	dofile(modpath.."/jackhammer.lua")
 	dofile(modpath.."/aa12.lua")
 end
-if rweapons_smgs == "true" then
+if minetest.settings:get_bool("rangedweapons_smgs", true) then
 	dofile(modpath.."/mp5.lua")
 	dofile(modpath.."/ump.lua")
 	dofile(modpath.."/mp40.lua")
 	dofile(modpath.."/thompson.lua")
 end
-if rweapons_rifles == "true" then
+if minetest.settings:get_bool("rangedweapons_rifles", true) then
 	dofile(modpath.."/awp.lua")
 	dofile(modpath.."/svd.lua")
 	dofile(modpath.."/m200.lua")
 end
-if rweapons_heavy_machineguns == "true" then
+if minetest.settings:get_bool("rangedweapons_heavy_machineguns", true) then
 	dofile(modpath.."/m60.lua")
 	dofile(modpath.."/rpk.lua")
 	dofile(modpath.."/minigun.lua")
 end
-if rweapons_revolvers == "true" then
+if minetest.settings:get_bool("rangedweapons_revolvers", true) then
 	dofile(modpath.."/python.lua")
 	dofile(modpath.."/taurus.lua")
 end
-if rweapons_assault_rifles == "true" then
+if minetest.settings:get_bool("rangedweapons_assault_rifles", true) then
 	dofile(modpath.."/m16.lua")
 	dofile(modpath.."/g36.lua")
 	dofile(modpath.."/ak47.lua")
 	dofile(modpath.."/scar.lua")
 end
 
-if rweapons_explosives == "true" then
+if minetest.settings:get_bool("rangedweapons_explosives", true) then
 	dofile(modpath.."/explosives.lua")
 	dofile(modpath.."/m79.lua")
 	dofile(modpath.."/milkor.lua")
@@ -856,11 +855,9 @@ if rweapons_explosives == "true" then
 	dofile(modpath.."/hand_grenade.lua")
 end
 
-
-if rweapons_glass_breaking == "true" then
+if minetest.settings:get_bool("rangedweapons_glass_breaking", true) then
 	dofile(modpath.."/glass_breaking.lua")
-end
-if not minetest.settings:get_bool("glass_breaking") then
+--[[ What is this good for?
 minetest.register_abm({
 	nodenames = {"rangedweapons:broken_glass"},
 	interval = 1,
@@ -872,6 +869,8 @@ minetest.register_abm({
 		end
 	end
 })
+end
+--]]
 end
 
 local rangedweapons_empty_shell = {
