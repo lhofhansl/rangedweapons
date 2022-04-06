@@ -25,14 +25,17 @@ rangedweapons_headshot_dmg_multiplier (Headshot Damage Multiplier) float 1.75
 #    Damage multiplier for hits on mobs
 rangedweapons_mob_dmg_multiplier (Mob Damage Multiplier) float 1.0
 
-#    Amount of blood
+#    Amount of blood (0 to disable)
 rangedweapons_bloodyness (Bloodyness) int 10
 
-#    Maximum Gun Skill (set to 100 to disable gaining skil)
+#    Maximum Gun Skill (set to 100 to disable gaining skill)
 rangedweapons_max_gun_efficiency (Maximum Gun Skill) int 300
 
-#    Minimum Gun Skill (set to 100 to disable loosing skil)
+#    Minimum Gun Skill (set to 100 to disable loosing skill)
 rangedweapons_min_gun_efficiency (Minimum Gun Skill) int 40
+
+#    Use particles on bullet impact (disabling can improve server lag)
+rangedweapons_impact_particles (Particles on impact) bool true
 
 rangedweapons_shurikens (Enable Shurikens) bool true
 

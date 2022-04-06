@@ -25,6 +25,9 @@ initial_properties = {
 	collisionbox = {-0.0025, -0.0025, -0.0025, 0.0025, 0.0025, 0.0025},
 },
 }
+
+local use_particles = minetest.settings:get_bool("rangedweapons_impact_particles", true)
+
 rangedweapons_shot_bullet.on_step = function(self, dtime, moveresult)
 ----------------------------------------
 ---------------------------------------
@@ -79,7 +82,8 @@ if moveresult.collisions[1].type == "node" then
 minetest.check_for_falling(moveresult.collisions[1].node_pos)
 
 
-if minetest.registered_nodes[minetest.get_node(moveresult.collisions[1].node_pos).name]  and
+if use_particles and
+minetest.registered_nodes[minetest.get_node(moveresult.collisions[1].node_pos).name]  and
 minetest.registered_nodes[minetest.get_node(moveresult.collisions[1].node_pos).name].tiles and
 minetest.registered_nodes[minetest.get_node(moveresult.collisions[1].node_pos).name].tiles[1]
 then
@@ -199,6 +203,7 @@ end end
 else
 
 if math.random(1,100) <= nodePen then
+   if use_particles then
 	for i=1,10 do
 	minetest.add_particle({
 		pos = self.object:get_pos(),
@@ -212,6 +217,7 @@ if math.random(1,100) <= nodePen then
 		glow = 2,
 	})
 	end
+    end
 minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
 self.object:set_properties({collisionbox = {0,0,0,0,0,0}})
 --minetest.chat_send_all("hit")
@@ -222,6 +228,7 @@ if minetest.get_item_group(minetest.get_node(moveresult.collisions[1].node_pos).
 
 minetest.sound_play("default_dig_snappy", {pos = self.object:get_pos(), gain = 1.5})
 
+if use_particles then
 for i = 1,math.random(3,6) do
 	minetest.add_particle({
 		pos = self.object:get_pos(),
@@ -236,6 +243,7 @@ for i = 1,math.random(3,6) do
           animation = {type="vertical_frames", aspect_w=8, aspect_h=8, length = 0.8,},
 		glow = 15,
 	})
+end
 end
 
 self.object:set_properties({collisionbox = {0,0,0,0,0,0}})
@@ -331,6 +339,7 @@ owner:hud_change(hit, "text", hit_texture)
 
 
 if math.random(1,100) <= mobPen then
+   if use_particles then
 	for i=1,10 do
 	minetest.add_particle({
 		pos = self.object:get_pos(),
@@ -344,6 +353,7 @@ if math.random(1,100) <= mobPen then
 		glow = 2,
 	})
 	end
+    end
 minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
 self.object:set_properties({collisionbox = {0,0,0,0,0,0}})
 self.object:set_velocity(moveresult.collisions[1].old_velocity)
