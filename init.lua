@@ -670,7 +670,7 @@ rangedweapons_launch_projectile = function(player,projNum,projDmg,projEnt,visual
 		minetest.sound_play(shoot_sound, {pos = pos, max_hear_distance = 500})
 		pos.y = pos.y + 1.45
 
-	if has_shell > 0 then
+	if has_shell > 0 and minetest.settings:get_bool("rangedweapons_animate_empty_shells", true) then
 	local shl = minetest.add_entity(pos, shellEnt)
 shl:set_velocity({x=dir.x * -10, y=dir.y * -10, z=dir.z * -10})
 shl:set_acceleration({x=dir.x * -5, y= -10, z=dir.z * -5})
@@ -678,7 +678,8 @@ shl:set_rotation({x=0,y=yaw - math.pi/2,z=-svertical})
 shl:set_properties({
 textures = {shellTexture},
 visual = shellVisual,})
-	end	
+	end
+
 if smokeSize > 0 then
 	minetest.add_particle({
 		pos = pos,
