@@ -33,7 +33,8 @@ rangedweapons_shot_bullet.on_step = function(self, dtime, moveresult)
 ---------------------------------------
 
 if self.owner == nil then
-self.object:remove()
+	self.object:remove()
+	return
 end
 
 local sparks = self.sparks or 0
