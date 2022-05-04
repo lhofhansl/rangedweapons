@@ -37,8 +37,11 @@ rangedweapons_min_gun_efficiency (Minimum Gun Skill) int 40
 #    Use particles on bullet impact (disabling can improve server lag)
 rangedweapons_impact_particles (Particles on impact) bool true
 
-#    Animate Empty Shells ascEntities (disabling can improve server lag)
+#    Animate Empty Shells as Entities (disabling can improve server lag)
 rangedweapons_animate_empty_shells (Animate Empty Shells) bool true
+
+#    Bullet ricochet (disabling can improve server lag)
+rangedweapons_bullet_ricochet (Bullets Ricocet) bool true
 
 rangedweapons_shurikens (Enable Shurikens) bool true
 
