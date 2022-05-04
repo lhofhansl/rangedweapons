@@ -143,7 +143,8 @@ end
 end
 
 
-if rweapons_door_breaking == "true" and door_break > 0 then
+if door_break > 0 and minetest.settings:get_bool("rangedweapons_door_breaking", true) then
+
 if string.find(minetest.get_node(moveresult.collisions[1].node_pos).name,"door_wood") then
 
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
@@ -152,7 +153,7 @@ minetest.sound_play("rangedweapons_woodbreak",{pos = moveresult.collisions[1].no
 
 end end
 
-if rweapons_glass_breaking == "true" and glass_break > 0 then
+if glass_break > 0 and minetest.settings:get_bool("rangedweapons_glass_breaking", true) then
 	
 local nodeName = minetest.get_node(moveresult.collisions[1].node_pos).name
 
