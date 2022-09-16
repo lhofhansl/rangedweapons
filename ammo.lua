@@ -282,9 +282,9 @@ for _, dmg in pairs(actualDamage) do
     damage[_] = actualDamage[_]
 end
 
-local player_dmg_multiplier = minetest.settings:get("rangedweapons_player_dmg_multiplier") or 1.0
-local headshot_dmg_multiplier = minetest.settings:get("rangedweapons_headshot_dmg_multiplier") or 1.75
-local mob_dmg_multiplier = minetest.settings:get("rangedweapons_mob_dmg_multiplier") or 1.0
+local player_dmg_multiplier = tonumber(minetest.settings:get("rangedweapons_player_dmg_multiplier")) or 1.0
+local headshot_dmg_multiplier = tonumber(minetest.settings:get("rangedweapons_headshot_dmg_multiplier")) or 1.75
+local mob_dmg_multiplier = tonumber(minetest.settings:get("rangedweapons_mob_dmg_multiplier")) or 1.0
 
 if moveresult.collisions[1].object:is_player() then
    for _, player_dmg in pairs(damage) do
@@ -327,7 +327,7 @@ moveresult.collisions[1].object:punch(owner, 1.0, {
 		damage_groups = damage,}, nil)
 owner:hud_change(hit, "text", hit_texture)
 
-	local bloodyness = minetest.settings:get("rangedweapons_bloodyness") or 10
+	local bloodyness = tonumber(minetest.settings:get("rangedweapons_bloodyness")) or 10
 	for i=1,math.random(math.ceil(bloodyness*0.66),math.ceil(bloodyness*1.5)) do
 	minetest.add_particle({
 		pos = self.object:get_pos(),

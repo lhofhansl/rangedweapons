@@ -39,7 +39,7 @@ minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75})
 end
 end
 
-local max_gun_efficiency = minetest.settings:get("rangedweapons_max_gun_efficiency") or 300
+local max_gun_efficiency = tonumber(minetest.settings:get("rangedweapons_max_gun_efficiency")) or 300
 
 rangedweapons_gain_skill = function(player,skill,chance)
 

@@ -79,7 +79,7 @@ end
 	end
 })
 
-local min_gun_efficiency = minetest.settings:get("rangedweapons_min_gun_efficiency") or 40
+local min_gun_efficiency = tonumber(minetest.settings:get("rangedweapons_min_gun_efficiency")) or 40
 
 	local timer = 0
 minetest.register_globalstep(function(dtime, player)
