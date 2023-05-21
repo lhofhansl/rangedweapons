@@ -23,9 +23,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "rangedweapons:ak47",
 	recipe = {
-		{"default:diamond", "default:steel_ingot", "default:tree"},
-		{"default:tree", "default:mese", "default:steel_ingot"},
-		{"default:steel_ingot", "", "default:tree"},
+		{"default:diamond", "default:steel_ingot", "group:tree"},
+		{"group:tree", "default:mese", "default:steel_ingot"},
+		{"default:steel_ingot", "", "group:tree"},
 	}
 })
 
@@ -60,8 +60,8 @@ minetest.register_craft({
 	output = "rangedweapons:m1991",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"", "default:mese_crystal", "default:tree"},
-		{"", "", "default:tree"},
+		{"", "default:mese_crystal", "group:tree"},
+		{"", "", "group:tree"},
 	}
 })
 
@@ -185,7 +185,7 @@ minetest.register_craft({
 	recipe = {
 		{"", "", "default:mese_crystal_fragment"},
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"", "default:mese_crystal_fragment", "default:tree"},
+		{"", "default:mese_crystal_fragment", "group:tree"},
 	}
 })
 
@@ -211,8 +211,8 @@ minetest.register_craft({
 	output = "rangedweapons:m79",
 	recipe = {
 		{"default:steel_ingot", "", "default:mese_crystal"},
-		{"default:steelblock", "default:diamond", "default:tree"},
-		{"default:tree", "default:tree", "default:tree"},
+		{"default:steelblock", "default:diamond", "group:tree"},
+		{"group:tree", "group:tree", "group:tree"},
 	}
 })
 
@@ -229,7 +229,7 @@ minetest.register_craft({
 	output = "rangedweapons:makarov",
 	recipe = {
 		{"", "default:steel_ingot", "default:steel_ingot"},
-		{"", "default:mese_crystal_fragment", "default:tree"},
+		{"", "default:mese_crystal_fragment", "group:tree"},
 		{"", "", "dye:black"},
 	}
 })
@@ -265,8 +265,8 @@ minetest.register_craft({
 	output = "rangedweapons:thompson",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "default:diamond"},
-		{"default:tree", "default:tree", "default:steel_ingot"},
-		{"default:steel_ingot", "default:diamond", "default:tree"},
+		{"group:tree", "group:tree", "default:steel_ingot"},
+		{"default:steel_ingot", "default:diamond", "group:tree"},
 	}
 })
 
@@ -285,7 +285,7 @@ minetest.register_craft({
 	output = "rangedweapons:remington",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"default:tree", "default:mese_crystal", "default:tree"},
+		{"group:tree", "default:mese_crystal", "group:tree"},
 	}
 })
 
@@ -293,8 +293,8 @@ minetest.register_craft({
 	output = "rangedweapons:rpg",
 	recipe = {
 		{"default:diamond", "default:steel_ingot", ""},
-		{"default:steelblock", "default:tree", "default:diamondblock"},
-		{"default:diamond", "default:tree", ""},
+		{"default:steelblock", "group:tree", "default:diamondblock"},
+		{"default:diamond", "group:tree", ""},
 	}
 })
 
@@ -302,7 +302,7 @@ minetest.register_craft({
 	output = "rangedweapons:rpk",
 	recipe = {
 		{"default:diamond", "rangedweapons:ak47", ""},
-		{"default:steel_ingot", "default:steelblock", "default:tree"},
+		{"default:steel_ingot", "default:steelblock", "group:tree"},
 		{"", "default:diamond", "default:steel_ingot"},
 	}
 })
@@ -330,7 +330,7 @@ minetest.register_craft({
 	recipe = {
 		{"default:steel_ingot", "default:diamondblock", "default:steel_ingot"},
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"default:tree", "default:diamond", "default:tree"},
+		{"group:tree", "default:diamond", "group:tree"},
 	}
 })
 
@@ -624,8 +624,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "rangedweapons:plastic_sheet",
 	recipe = {
-		{"default:tree", "default:coal_lump", "default:tree"},
-		{"default:coal_lump", "default:tree", "default:coal_lump"},
+		{"group:tree", "default:coal_lump", "group:tree"},
+		{"default:coal_lump", "group:tree", "default:coal_lump"},
 	}
 })
 
