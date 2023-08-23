@@ -95,16 +95,16 @@ minetest.register_craft({
 	output = "rangedweapons:python",
 	recipe = {
 		{"rangedweapons:gunsteel_ingot", "rangedweapons:gunsteel_ingot", "rangedweapons:gunsteel_ingot"},
-		{"", "default:diamond", "rangedweapons:tree"},
-		{"", "default:mese_crystal", "rangedweapons:tree"},
+		{"", "default:diamond", "group:tree"},
+		{"", "default:mese_crystal", "group:tree"},
 	}
 })
 minetest.register_craft({
 	output = "rangedweapons:python",
 	recipe = {
 		{"moreores:silver_ingot", "moreores:silver_ingot", "moreores:silver_ingot"},
-		{"", "default:diamond", "rangedweapons:tree"},
-		{"", "default:mese_crystal", "rangedweapons:tree"},
+		{"", "default:diamond", "group:tree"},
+		{"", "default:mese_crystal", "group:tree"},
 	}
 })
 
