@@ -239,9 +239,11 @@ gunMeta:set_int("RW_bullets",0)
 end
 
 if inv:contains_item("main",reload_ammo:get_name()) and 
-gunMeta:get_int("RW_bullets") < clipSize then
-inv:remove_item("main",reload_ammo:get_name())
-gunMeta:set_int("RW_bullets",gunMeta:get_int("RW_bullets")+1)
+   gunMeta:get_int("RW_bullets") < clipSize then
+   if not minetest.settings:get_bool("rangedweapons_infinite_ammo", false) then
+      inv:remove_item("main",reload_ammo:get_name())
+   end
+   gunMeta:set_int("RW_bullets",gunMeta:get_int("RW_bullets")+1)
 end
 
 gunMeta:set_string("RW_ammo_name",reload_ammo:get_name())
