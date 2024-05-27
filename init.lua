@@ -22,6 +22,13 @@ minetest.register_node("rangedweapons:antigun_block", {
 ---- gun_funcs
 ----
 
+local function update_ammo_counter_on_gun(gunammo, gunMeta, player)
+	player:hud_change(gunammo, "text", gunMeta:get_int("RW_bullets"))
+	--local meta = itemstack:get_meta()
+	gunMeta:set_string("count_meta", tostring(gunMeta:get_int("RW_bullets")))
+end
+
+
 make_sparks = function(pos)
 minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75})
 	for i=1,9 do
@@ -140,7 +147,7 @@ end
 
 gunMeta:set_string("RW_ammo_name",reload_ammo:get_name())
 
-player:hud_change(gunammo, "text", gunMeta:get_int("RW_bullets"))
+update_ammo_counter_on_gun(gunammo, gunMeta, player)
 
 if GunCaps.gun_magazine ~= nil then
 		local pos = player:get_pos()
@@ -248,7 +255,7 @@ end
 
 gunMeta:set_string("RW_ammo_name",reload_ammo:get_name())
 
-player:hud_change(gunammo, "text", gunMeta:get_int("RW_bullets"))
+update_ammo_counter_on_gun(gunammo, gunMeta, player)
 
 if GunCaps.gun_unloaded ~= nil then
 itemstack:set_name(GunCaps.gun_unloaded)
@@ -385,7 +392,7 @@ if math.random(1,100) > gun_ammo_save then
 gunMeta:set_int("RW_bullets",gunMeta:get_int("RW_bullets")-1)
 end
 
-player:hud_change(gunammo, "text", gunMeta:get_int("RW_bullets"))
+update_ammo_counter_on_gun(gunammo, gunMeta, player)
 
 local gun_icon = "rangedweapons_emergency_gun_icon.png"
 if GunCaps.gun_icon ~= nil then
