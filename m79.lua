@@ -22,7 +22,6 @@ minetest.register_tool("rangedweapons:m79", {
 		suitable_ammo = {{"rangedweapons:40mm",1}},
 		gun_skill = {"",1},
 		gun_magazine = "rangedweapons:shell_grenadedrop",
-		gun_icon = "rangedweapons_m79_icon.png",
 		gun_unloaded = "rangedweapons:m79_r",
 		gun_cooling = "rangedweapons:m79",
 		gun_velocity = 20,

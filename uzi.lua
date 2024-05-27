@@ -46,7 +46,6 @@ minetest.register_tool("rangedweapons:uzi_rrr", {
 		suitable_ammo = {{"rangedweapons:9mm",40},{"rangedweapons:45acp",22}},
 		gun_skill = {"mp_skill",80},
 		gun_magazine = "rangedweapons:machinepistol_mag",
-		gun_icon = "rangedweapons_uzi_icon.png",
 		gun_unloaded = "rangedweapons:uzi_r",
 		gun_velocity = 25,
 		gun_accuracy = 72,

@@ -72,7 +72,6 @@ RW_gun_capabilities = {
 		suitable_ammo = {{"rangedweapons:762mm",10}},
 		gun_skill = {"rifle_skill",20},
 		gun_magazine = "rangedweapons:rifle_mag",
-		gun_icon = "rangedweapons_svd_icon.png",
 		gun_unloaded = "rangedweapons:svd_r",
 		gun_cooling = "rangedweapons:svd_uld",
 		gun_velocity = 75,

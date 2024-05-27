@@ -46,7 +46,6 @@ minetest.register_tool("rangedweapons:tmp_rrr", {
 		suitable_ammo = {{"rangedweapons:9mm",30}},
 		gun_skill = {"mp_skill",85},
 		gun_magazine = "rangedweapons:machinepistol_mag",
-		gun_icon = "rangedweapons_tmp_icon.png",
 		gun_unloaded = "rangedweapons:tmp_r",
 		gun_velocity = 20,
 		gun_accuracy = 64,

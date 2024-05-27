@@ -20,7 +20,6 @@ RW_gun_capabilities = {
 		gun_critEffc = 2.0,
 		suitable_ammo = {{"rangedweapons:shell",7}},
 		gun_skill = {"shotgun_skill",20},
-		gun_icon = "rangedweapons_benelli_icon.png",
 		gun_unloaded = "rangedweapons:benelli_rld",
 		gun_cooling = "rangedweapons:benelli_uld",
 		gun_velocity = 25,

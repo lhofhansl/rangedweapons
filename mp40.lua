@@ -41,7 +41,6 @@
 		suitable_ammo = {{"rangedweapons:9mm",32}},
 		gun_skill = {"smg_skill",75},
 		gun_magazine = "rangedweapons:machinepistol_mag",
-		gun_icon = "rangedweapons_mp40_icon.png",
 		gun_unloaded = "rangedweapons:mp40_r",
 		gun_velocity = 25,
 		gun_accuracy = 75,

@@ -48,7 +48,6 @@ minetest.register_tool("rangedweapons:rpk_rrr", {
 		suitable_ammo = {{"rangedweapons:762mm",75}},
 		gun_skill = {"heavy_skill",55},
 		gun_magazine = "rangedweapons:drum_mag",
-		gun_icon = "rangedweapons_rpk_icon.png",
 		gun_unloaded = "rangedweapons:rpk_r",
 		gun_velocity = 55,
 		gun_accuracy = 70,

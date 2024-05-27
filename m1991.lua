@@ -52,7 +52,6 @@ RW_gun_capabilities = {
 		suitable_ammo = {{"rangedweapons:45acp",8}},
 		gun_skill = {"handgun_skill",40},
 		gun_magazine = "rangedweapons:handgun_mag_black",
-		gun_icon = "rangedweapons_m1991_icon.png",
 		gun_unloaded = "rangedweapons:m1991_r",
 		gun_cooling = "rangedweapons:m1991_rld",
 		gun_velocity = 25,

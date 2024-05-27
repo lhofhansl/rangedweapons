@@ -22,7 +22,6 @@ RW_gun_capabilities = {
 		suitable_ammo = {{"rangedweapons:40mm",6}},
 		gun_skill = {"",1},
 		gun_magazine = "rangedweapons:shell_grenadedrop",
-		gun_icon = "rangedweapons_milkor_icon.png",
 		gun_unloaded = "rangedweapons:milkor_rld",
 		gun_cooling = "rangedweapons:milkor",
 		gun_velocity = 30,

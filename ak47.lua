@@ -49,7 +49,6 @@ minetest.register_tool("rangedweapons:ak47_rrr", {
 		suitable_ammo = {{"rangedweapons:762mm",30}},
 		gun_skill = {"arifle_skill",50},
 		gun_magazine = "rangedweapons:assaultrifle_mag",
-		gun_icon = "rangedweapons_ak47_icon.png",
 		gun_unloaded = "rangedweapons:ak47_r",
 		gun_velocity = 40,
 		gun_accuracy = 77,

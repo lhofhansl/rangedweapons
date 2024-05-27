@@ -72,7 +72,6 @@ RW_gun_capabilities = {
 		suitable_ammo = {{"rangedweapons:408cheytac",7}},
 		gun_skill = {"rifle_skill",12},
 		gun_magazine = "rangedweapons:rifle_mag",
-		gun_icon = "rangedweapons_m200_icon.png",
 		gun_unloaded = "rangedweapons:m200_r",
 		gun_cooling = "rangedweapons:m200_uld",
 		gun_velocity = 80,

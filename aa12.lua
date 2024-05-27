@@ -46,7 +46,6 @@ minetest.register_tool("rangedweapons:aa12_rrr", {
 		suitable_ammo = {{"rangedweapons:shell",20}},
 		gun_skill = {"shotgun_skill",40},
 		gun_magazine = "rangedweapons:drum_mag",
-		gun_icon = "rangedweapons_aa12_icon.png",
 		gun_unloaded = "rangedweapons:aa12_r",
 		gun_velocity = 25,
 		gun_accuracy = 40,

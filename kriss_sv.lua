@@ -47,7 +47,6 @@ minetest.register_tool("rangedweapons:kriss_sv_rrr", {
 		suitable_ammo = {{"rangedweapons:9mm",33},{"rangedweapons:10mm",33},{"rangedweapons:45acp",13}},
 		gun_skill = {"mp_skill",90},
 		gun_magazine = "rangedweapons:machinepistol_mag",
-		gun_icon = "rangedweapons_kriss_sv_icon.png",
 		gun_unloaded = "rangedweapons:kriss_sv_r",
 		gun_velocity = 20,
 		gun_accuracy = 60,

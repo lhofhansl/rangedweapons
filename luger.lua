@@ -52,7 +52,6 @@ minetest.register_tool("rangedweapons:luger", {
 		suitable_ammo = {{"rangedweapons:9mm",8}},
 		gun_skill = {"handgun_skill",40},
 		gun_magazine = "rangedweapons:handgun_mag_black",
-		gun_icon = "rangedweapons_luger_icon.png",
 		gun_unloaded = "rangedweapons:luger_r",
 		gun_cooling = "rangedweapons:luger_rld",
 		gun_velocity = 20,
