@@ -903,35 +903,6 @@ minetest.register_abm({
 })
 
 minetest.register_on_joinplayer(function(player)
- gunammo = 
-	player:hud_add({
-	hud_elem_type = "text",
-	name = "gunammo",
-	text = "",
-	number = 0xFFFFFF,
-	scale = {x = 100, y = 20},
-	position = {x = 0.7, y = 0.1},
-	offset = {x = 30, y = 100},
-	alignment = {x = 0, y = -1}
-	})
- gunimg = 
-	player:hud_add({
-	hud_elem_type = "image",
-	text = "rangedweapons_empty_icon.png",
-	scale = {x = 2, y = 2},
-	position = {x = 0.7, y = 0.065},
-	offset = {x = 30, y = 100},
-	alignment = {x = 0, y = -1}
-	})
- ammoimg = 
-	player:hud_add({
-	hud_elem_type = "image",
-	text = "rangedweapons_empty_icon.png",
-	scale = {x = 1.5, y = 1.5},
-	position = {x = 0.725, y = 0.1},
-	offset = {x = 30, y = 100},
-	alignment = {x = 0, y = -1}
-	})
  hit = 
 	player:hud_add({
 	hud_elem_type = "image",
