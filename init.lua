@@ -110,10 +110,6 @@ end end
 
 if player_has_ammo == 1 then
 
-if reload_ammo:get_definition().inventory_image ~= nil then
-ammo_icon = reload_ammo:get_definition().inventory_image
-end
-
 local gunMeta = itemstack:get_meta()
 local ammoCount = gunMeta:get_int("RW_bullets")
 local ammoName = gunMeta:get_string("RW_ammo_name")
@@ -208,10 +204,6 @@ end
 end end
 
 if player_has_ammo == 1 then
-
-if reload_ammo:get_definition().inventory_image ~= nil then
-ammo_icon = reload_ammo:get_definition().inventory_image
-end
 
 local gunMeta = itemstack:get_meta()
 local ammoCount = gunMeta:get_int("RW_bullets")
@@ -451,11 +443,6 @@ end
 
 if gun_skillChance > 0 and gun_skill ~= "" then
 rangedweapons_gain_skill(player,gun_skill,gun_skillChance)
-end
-
-local ammo_icon = "rangedweapons_emergency_ammo_icon.png"
-if bulletStack:get_definition().inventory_image ~= nil then
-ammo_icon = bulletStack:get_definition().inventory_image
 end
 
 if AmmoCaps ~= nil then
