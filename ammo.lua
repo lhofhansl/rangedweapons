@@ -27,6 +27,7 @@ initial_properties = {
 }
 
 local use_particles = minetest.settings:get_bool("rangedweapons_impact_particles", true)
+local max_lifetime = tonumber(minetest.settings:get("rangedweapons_bullet_lifetime")) or 10.0
 
 rangedweapons_shot_bullet.on_step = function(self, dtime, moveresult)
 ----------------------------------------
@@ -66,7 +67,7 @@ self.object:set_properties({collide_with_objects = true})
 self.object:set_properties({collisionbox = {-size, -size, -size, size, size, size}})
 end
 
-if self.timer > 10 then
+if self.timer > max_lifetime then
 self.object:remove()
 end
 

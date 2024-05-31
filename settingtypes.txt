@@ -16,6 +16,9 @@ rangedweapons_other_weapon_crafting (Other Weapon Crafting) bool true
 #    If true, a gun can always be reloaded (just need at least one matching bullet in the inventory)
 rangedweapons_infinite_ammo (Inifinite Ammo) bool false
 
+#    Maximum lifetime of a bullet (or rocket)
+rangedweapons_bullet_lifetime (Bullet Lifetime) int 10
+
 #    Damage multiplier for hits on other players
 rangedweapons_player_dmg_multiplier (Player Damage Multiplier) float 1.0
 
