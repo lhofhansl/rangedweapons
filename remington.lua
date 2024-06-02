@@ -20,7 +20,6 @@ RW_gun_capabilities = {
 		gun_critEffc = 2.0,
 		suitable_ammo = {{"rangedweapons:shell",4}},
 		gun_skill = {"shotgun_skill",20},
-		gun_icon = "rangedweapons_remington_icon.png",
 		gun_unloaded = "rangedweapons:remington_rld",
 		gun_cooling = "rangedweapons:remington_uld",
 		gun_velocity = 18,

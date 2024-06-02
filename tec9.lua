@@ -50,7 +50,6 @@ minetest.register_craftitem("rangedweapons:tec9_rrr", {
 		suitable_ammo = {{"rangedweapons:9mm",50}},
 		gun_skill = {"mp_skill",80},
 		gun_magazine = "rangedweapons:machinepistol_mag",
-		gun_icon = "rangedweapons_tec9_icon.png",
 		gun_unloaded = "rangedweapons:tec9_r",
 		gun_velocity = 20,
 		gun_accuracy = 75,

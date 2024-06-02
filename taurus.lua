@@ -22,7 +22,6 @@ RW_gun_capabilities = {
 		gun_critEffc = 3.1,
 		suitable_ammo = {{"rangedweapons:44",6}},
 		gun_skill = {"revolver_skill",40},
-		gun_icon = "rangedweapons_taurus_icon.png",
 		gun_unloaded = "rangedweapons:taurus_rld",
 		gun_cooling = "rangedweapons:taurus",
 		gun_velocity = 55,

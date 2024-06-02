@@ -49,7 +49,6 @@ minetest.register_tool("rangedweapons:g36_rrr", {
 		suitable_ammo = {{"rangedweapons:556mm",30}},
 		gun_skill = {"arifle_skill",55},
 		gun_magazine = "rangedweapons:assaultrifle_mag",
-		gun_icon = "rangedweapons_g36_icon.png",
 		gun_unloaded = "rangedweapons:g36_r",
 		gun_velocity = 40,
 		gun_accuracy = 80,

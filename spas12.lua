@@ -20,7 +20,6 @@ RW_gun_capabilities = {
 		gun_critEffc = 2.1,
 		suitable_ammo = {{"rangedweapons:shell",8}},
 		gun_skill = {"shotgun_skill",20},
-		gun_icon = "rangedweapons_spas12_icon.png",
 		gun_unloaded = "rangedweapons:spas12_rld",
 		gun_cooling = "rangedweapons:spas12_uld",
 		gun_velocity = 32,

@@ -47,7 +47,6 @@ minetest.register_tool("rangedweapons:scar_rrr", {
 		suitable_ammo = {{"rangedweapons:762mm",20},{"rangedweapons:556mm",30}},
 		gun_skill = {"arifle_skill",50},
 		gun_magazine = "rangedweapons:assaultrifle_mag",
-		gun_icon = "rangedweapons_scar_icon.png",
 		gun_unloaded = "rangedweapons:scar_r",
 		gun_velocity = 45,
 		gun_accuracy = 85,

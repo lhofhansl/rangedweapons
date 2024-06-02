@@ -24,7 +24,6 @@ minetest.register_tool("rangedweapons:m60_r", {
 		gun_critEffc = 3.0,
 		suitable_ammo = {{"rangedweapons:762mm",100}},
 		gun_skill = {"heavy_skill",60},
-		gun_icon = "rangedweapons_m60_icon.png",
 		gun_unloaded = "rangedweapons:m60_r",
 		gun_velocity = 64,
 		gun_accuracy = 65,

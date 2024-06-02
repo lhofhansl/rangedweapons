@@ -32,7 +32,6 @@ RW_gun_capabilities = {
 		suitable_ammo = {{"rangedweapons:9mm",15}},
 		gun_skill = {"handgun_skill",43},
 		gun_magazine = "rangedweapons:handgun_mag_black",
-		gun_icon = "rangedweapons_beretta_icon.png",
 		gun_unloaded = "rangedweapons:beretta_r",
 		gun_cooling = "rangedweapons:beretta_rld",
 		gun_velocity = 25,

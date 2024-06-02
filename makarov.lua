@@ -55,7 +55,6 @@ minetest.register_tool("rangedweapons:makarov", {
 		suitable_ammo = {{"rangedweapons:9mm",8}},
 		gun_skill = {"handgun_skill",40},
 		gun_magazine = "rangedweapons:handgun_mag_black",
-		gun_icon = "rangedweapons_makarov_icon.png",
 		gun_unloaded = "rangedweapons:makarov_r",
 		gun_cooling = "rangedweapons:makarov_rld",
 		gun_velocity = 20,

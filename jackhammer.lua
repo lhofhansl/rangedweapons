@@ -46,7 +46,6 @@ minetest.register_tool("rangedweapons:jackhammer_rrr", {
 		suitable_ammo = {{"rangedweapons:shell",10}},
 		gun_skill = {"shotgun_skill",35},
 		gun_magazine = "rangedweapons:drum_mag",
-		gun_icon = "rangedweapons_jackhammer_icon.png",
 		gun_unloaded = "rangedweapons:jackhammer_r",
 		gun_velocity = 30,
 		gun_accuracy = 35,

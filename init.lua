@@ -22,6 +22,11 @@ minetest.register_node("rangedweapons:antigun_block", {
 ---- gun_funcs
 ----
 
+local function update_ammo_counter_on_gun(gunMeta)
+	gunMeta:set_string("count_meta", tostring(gunMeta:get_int("RW_bullets")))
+end
+
+
 make_sparks = function(pos)
 minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75})
 	for i=1,9 do
@@ -104,20 +109,6 @@ end
 end end
 
 if player_has_ammo == 1 then
-local gun_icon = "rangedweapons_emergency_gun_icon.png"
-
-if GunCaps.gun_icon ~= nil then
-gun_icon = GunCaps.gun_icon
-end
-
-local ammo_icon = "rangedweapons_emergency_ammo_icon.png"
-
-if reload_ammo:get_definition().inventory_image ~= nil then
-ammo_icon = reload_ammo:get_definition().inventory_image
-end
-
-	player:hud_change(gunimg, "text", gun_icon)
-	player:hud_change(ammoimg, "text", ammo_icon)
 
 local gunMeta = itemstack:get_meta()
 local ammoCount = gunMeta:get_int("RW_bullets")
@@ -140,7 +131,7 @@ end
 
 gunMeta:set_string("RW_ammo_name",reload_ammo:get_name())
 
-player:hud_change(gunammo, "text", gunMeta:get_int("RW_bullets"))
+update_ammo_counter_on_gun(gunMeta)
 
 if GunCaps.gun_magazine ~= nil then
 		local pos = player:get_pos()
@@ -213,20 +204,6 @@ end
 end end
 
 if player_has_ammo == 1 then
-local gun_icon = "rangedweapons_emergency_gun_icon.png"
-
-if GunCaps.gun_icon ~= nil then
-gun_icon = GunCaps.gun_icon
-end
-
-local ammo_icon = "rangedweapons_emergency_ammo_icon.png"
-
-if reload_ammo:get_definition().inventory_image ~= nil then
-ammo_icon = reload_ammo:get_definition().inventory_image
-end
-
-	player:hud_change(gunimg, "text", gun_icon)
-	player:hud_change(ammoimg, "text", ammo_icon)
 
 local gunMeta = itemstack:get_meta()
 local ammoCount = gunMeta:get_int("RW_bullets")
@@ -248,7 +225,7 @@ end
 
 gunMeta:set_string("RW_ammo_name",reload_ammo:get_name())
 
-player:hud_change(gunammo, "text", gunMeta:get_int("RW_bullets"))
+update_ammo_counter_on_gun(gunMeta)
 
 if GunCaps.gun_unloaded ~= nil then
 itemstack:set_name(GunCaps.gun_unloaded)
@@ -385,13 +362,7 @@ if math.random(1,100) > gun_ammo_save then
 gunMeta:set_int("RW_bullets",gunMeta:get_int("RW_bullets")-1)
 end
 
-player:hud_change(gunammo, "text", gunMeta:get_int("RW_bullets"))
-
-local gun_icon = "rangedweapons_emergency_gun_icon.png"
-if GunCaps.gun_icon ~= nil then
-gun_icon = GunCaps.gun_icon
-end
-	player:hud_change(gunimg, "text", gun_icon)
+update_ammo_counter_on_gun(gunMeta)
 
 local OnCollision = function() end
 
@@ -473,12 +444,6 @@ end
 if gun_skillChance > 0 and gun_skill ~= "" then
 rangedweapons_gain_skill(player,gun_skill,gun_skillChance)
 end
-
-local ammo_icon = "rangedweapons_emergency_ammo_icon.png"
-if bulletStack:get_definition().inventory_image ~= nil then
-ammo_icon = bulletStack:get_definition().inventory_image
-end
-player:hud_change(ammoimg, "text", ammo_icon)
 
 if AmmoCaps ~= nil then
 
@@ -925,35 +890,6 @@ minetest.register_abm({
 })
 
 minetest.register_on_joinplayer(function(player)
- gunammo = 
-	player:hud_add({
-	hud_elem_type = "text",
-	name = "gunammo",
-	text = "",
-	number = 0xFFFFFF,
-	scale = {x = 100, y = 20},
-	position = {x = 0.7, y = 0.1},
-	offset = {x = 30, y = 100},
-	alignment = {x = 0, y = -1}
-	})
- gunimg = 
-	player:hud_add({
-	hud_elem_type = "image",
-	text = "rangedweapons_empty_icon.png",
-	scale = {x = 2, y = 2},
-	position = {x = 0.7, y = 0.065},
-	offset = {x = 30, y = 100},
-	alignment = {x = 0, y = -1}
-	})
- ammoimg = 
-	player:hud_add({
-	hud_elem_type = "image",
-	text = "rangedweapons_empty_icon.png",
-	scale = {x = 1.5, y = 1.5},
-	position = {x = 0.725, y = 0.1},
-	offset = {x = 30, y = 100},
-	alignment = {x = 0, y = -1}
-	})
  hit = 
 	player:hud_add({
 	hud_elem_type = "image",
