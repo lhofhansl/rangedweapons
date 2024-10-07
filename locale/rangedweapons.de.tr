@@ -1,5 +1,6 @@
 # textdomain:rangedweapons
 @1 skill degraded!=Geschick mit @1 verloren!
+You've improved your @1 skill!=Geschick mit @1 verbessert!
 Handgun=Handfeuerwaffe
 Machine Pistol=Maschinenpistole
 S.M.G.=S.M.G.
@@ -9,3 +10,5 @@ A.Rifle=Sturmgewehr
 Revolver/magnum=Revolver/Magnum
 Rifle=Gewehr
 Throwing weapons=Wurfwaffen
+Gun efficiency: increases damage, accuracy and crit chance.=Waffenwirksamkeit: erhöht Schaden, Genauigkeit und Volltrefferwahrscheinlichkeit.
+Done=Fertig

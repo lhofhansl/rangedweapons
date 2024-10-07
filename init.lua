@@ -22,6 +22,14 @@ minetest.register_node("rangedweapons:antigun_block", {
 ---- gun_funcs
 ----
 
+local function get_skill_from_playerMeta(playerMeta,skill)
+	if playerMeta:contains(skill) then
+		return playerMeta:get_int(skill)/100
+	else
+		return 1
+	end
+end
+
 local function update_ammo_counter_on_gun(gunMeta)
 	gunMeta:set_string("count_meta", tostring(gunMeta:get_int("RW_bullets")))
 end
@@ -43,22 +51,6 @@ minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75})
 	})
 end
 end
-
-local max_gun_efficiency = tonumber(minetest.settings:get("rangedweapons_max_gun_efficiency")) or 300
-
-rangedweapons_gain_skill = function(player,skill,chance)
-
-if math.random(1, chance) == 1 then
-	local p_meta = player:get_meta()
-local skill_num = p_meta:get_int(skill)
-if skill_num < max_gun_efficiency then
-p_meta:set_int(skill, skill_num + 1)
-    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#25c200","You've improved your skill with this type of gun!"))
-end
-end
-
-end
-
 
 rangedweapons_reload_gun = function(itemstack, player)
 
@@ -317,10 +309,7 @@ if throw_skillChance > 0 and throw_skill ~= "" then
 rangedweapons_gain_skill(player,throw_skill,throw_skillChance)
 end
 
-local skill_value = 1
-if throw_skill ~= "" then
-   skill_value = playerMeta:get_int(throw_skill)/100
-end
+local skill_value = get_skill_from_playerMeta(playerMeta,throw_skill)
 
 rangedweapons_launch_projectile(player,throw_projectiles,throw_damage,throw_ent,throw_visual,throw_texture,throw_sound,throw_velocity,throw_accuracy,skill_value,OnCollision,throw_crit,throw_critEffc,throw_mobPen,throw_nodePen,0,"","","",throw_dps,throw_gravity,throw_door_breaking,throw_glass_breaking,throw_particles,throw_sparks,throw_bomb_ignite,throw_size,0,itemstack:get_wear(),throw_glow)
 
@@ -497,10 +486,7 @@ end
 
 --minetest.chat_send_all(minetest.serialize(combined_dmg))
 
-local skill_value = 1
-if gun_skill ~= "" then
-   skill_value = playerMeta:get_int(gun_skill)/100
-end
+local skill_value = get_skill_from_playerMeta(playerMeta,gun_skill)
 
 rangedweapons_launch_projectile(player,combined_projNum,combined_dmg,bullet_ent,bullet_visual,bullet_texture,gun_sound,combined_velocity,gun_accuracy,skill_value,OnCollision,combined_crit,combined_critEffc,combined_mobPen,combined_nodePen,gun_shell,bullet_shell_ent,bullet_shell_texture,bullet_shell_visual,combined_dps,combined_gravity,gun_door_breaking,bullet_glass_breaking,bullet_particles,bullet_sparks,bullet_bomb_ignite,bullet_size,gun_smokeSize,0,bullet_glow)
 
@@ -606,10 +592,7 @@ if power_skillChance > 0 and power_skill ~= "" then
 rangedweapons_gain_skill(player,power_skill,power_skillChance)
 end
 
-local skill_value = 1
-if power_skill ~= "" then
-   skill_value = playerMeta:get_int(power_skill)/100
-end
+local skill_value = get_skill_from_playerMeta(playerMeta,power_skill)
 
 rangedweapons_launch_projectile(player,power_projectiles,power_damage,power_ent,power_visual,power_texture,power_sound,power_velocity,power_accuracy,skill_value,OnCollision,power_crit,power_critEffc,power_mobPen,power_nodePen,0,"","","",power_dps,power_gravity,power_door_breaking,power_glass_breaking,power_particles,power_sparks,power_bomb_ignite,power_size,0,0,power_glow)
 

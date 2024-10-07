@@ -31,6 +31,9 @@ rangedweapons_mob_dmg_multiplier (Mob Damage Multiplier) float 1.0
 #    Amount of blood (0 to disable)
 rangedweapons_bloodyness (Bloodyness) int 10
 
+#    Whether skill system is enabled
+rangedweapons.skill_system (Skill System) bool true
+
 #    Maximum Gun Skill (set to 100 to disable gaining skill)
 rangedweapons_max_gun_efficiency (Maximum Gun Skill) int 300
 
