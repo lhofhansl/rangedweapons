@@ -162,11 +162,10 @@ local nodeName = minetest.get_node(moveresult.collisions[1].node_pos).name
 	minetest.swap_node(moveresult.collisions[1].node_pos, {name = "rangedweapons:broken_glass"})
 minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
 	end
-	if   nodeName == "xpanes:pane" or
-		nodeName == "xpanes:pane_flat" then
-minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
-minetest.add_item(moveresult.collisions[1].node_pos, "rangedweapons:glass_shards")
-minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
+	if   nodeName == "xpanes:pane" or nodeName == "xpanes:pane_flat" then
+		minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
+		if math.floor(math.random()*3)==0 then minetest.add_item(moveresult.collisions[1].node_pos, "vessels:glass_fragments") end
+		minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
 	end
 if string.find(nodeName,"door_glass") then
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
