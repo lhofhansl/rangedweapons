@@ -12,4 +12,4 @@ end
 
 victim:add_player_velocity({x=kbamount*(rw_proj_kb_pos_x*2),y= kbamount*(math.abs(rw_proj_kb_pos_y)/2), z=kbamount*(rw_proj_kb_pos_z*2)})
 
-end
+end

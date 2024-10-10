@@ -266,4 +266,4 @@ minetest.add_item(bullet.object:get_pos(), "rangedweapons:diamond_shuriken") end
 rangedweapons_yeet(itemstack, user)
 return itemstack
 	end,
-})
+})

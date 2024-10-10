@@ -70,4 +70,4 @@ return itemstack
 end,
 
 	inventory_image = "rangedweapons_g36.png",
-})
+})

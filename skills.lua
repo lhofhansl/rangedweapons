@@ -97,4 +97,4 @@ if not skill_system then
 			meta:set_string(skill.id, "")
 		end
 	end)
-end
+end

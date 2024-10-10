@@ -36,4 +36,4 @@ rangedweapons_shoot_powergun(itemstack, user)
 return itemstack
 	end,
 
-})
+})

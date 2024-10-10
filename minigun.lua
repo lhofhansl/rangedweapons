@@ -48,4 +48,4 @@ end,
 	inventory_image = "rangedweapons_minigun.png",
 })
 
-end
+end
