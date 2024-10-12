@@ -11,7 +11,7 @@ minetest.register_node("rangedweapons:broken_glass", {
 	liquid_alternative_flowing = "rangedweapons:broken_glass",
 	liquid_alternative_source = "rangedweapons:broken_glass",
 	liquid_viscosity = 7,
-	alpha = 160,
+	use_texture_alpha = "blend",
 	liquid_range= 0,
 	liquid_renewable = false,
 	damage_per_second = 2,

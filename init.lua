@@ -806,38 +806,38 @@ end
 --]]
 end
 
-local rangedweapons_empty_shell = {
-	physical = false,
+minetest.register_entity("rangedweapons:empty_shell", {
+	initial_properties = {
+		physical = false,
+		visual = "wielditem",
+		visual_size = {x=0.3, y=0.3},
+		textures = {"rangedweapons:shelldrop"},
+		collisionbox = {0, 0, 0, 0, 0, 0},
+	},
 	timer = 0,
-	visual = "wielditem",
-	visual_size = {x=0.3, y=0.3},
-	textures = {"rangedweapons:shelldrop"},
 	lastpos= {},
-	collisionbox = {0, 0, 0, 0, 0, 0},
-}
-rangedweapons_empty_shell.on_step = function(self, dtime, pos)
-	self.timer = self.timer + dtime
-	local pos = self.object:get_pos()
-	local node = minetest.get_node(pos)
-	if self.lastpos.y ~= nil then
-		if minetest.registered_nodes[node.name]~= nil then
-		if minetest.registered_nodes[node.name].walkable then
-	local vel = self.object:get_velocity()
-	local acc = self.object:get_acceleration()
-	self.object:set_velocity({x=vel.x*-0.3, y=vel.y*-0.75, z=vel.z*-0.3})
-			minetest.sound_play("rangedweapons_shellhit", {pos = self.lastpos, gain = 0.8}, true)
-	self.object:set_acceleration({x=acc.x, y=acc.y, z=acc.z})
-			end end
-	end
-	if self.timer > 1.69 then
-			minetest.sound_play("rangedweapons_bulletdrop", {pos = self.lastpos, gain = 0.8}, true)
-		self.object:remove()
+	on_step = function(self, dtime, pos)
+		self.timer = self.timer + dtime
+		local pos = self.object:get_pos()
+		local node = minetest.get_node(pos)
+		if self.lastpos.y ~= nil then
+			if minetest.registered_nodes[node.name]~= nil then
+			if minetest.registered_nodes[node.name].walkable then
+		local vel = self.object:get_velocity()
+		local acc = self.object:get_acceleration()
+		self.object:set_velocity({x=vel.x*-0.3, y=vel.y*-0.75, z=vel.z*-0.3})
+				minetest.sound_play("rangedweapons_shellhit", {pos = self.lastpos, gain = 0.8}, true)
+		self.object:set_acceleration({x=acc.x, y=acc.y, z=acc.z})
+				end end
+		end
+		if self.timer > 1.69 then
+				minetest.sound_play("rangedweapons_bulletdrop", {pos = self.lastpos, gain = 0.8}, true)
+			self.object:remove()
 
-	end
-	self.lastpos= {x = pos.x, y = pos.y, z = pos.z}
-end
-
-minetest.register_entity("rangedweapons:empty_shell", rangedweapons_empty_shell )
+		end
+		self.lastpos= {x = pos.x, y = pos.y, z = pos.z}
+	end,
+})
 
 
 minetest.register_abm({
@@ -854,31 +854,55 @@ minetest.register_abm({
 	end
 })
 
+local rangedweapons_player_data = {}
+local hud_definitions = {
+	scopehud = {
+		type = "image",
+		position = { x=0.5, y=0.5 },
+		scale = { x=-100, y=-100 },
+		text = "rangedweapons_scopehud.png",
+	},
+	hithud = {
+		type = "image",
+		text = nil,
+		scale = {x = 2, y = 2},
+		position = {x = 0.5, y = 0.5},
+		offset = {x = 0, y = 0},
+		alignment = {x = 0, y = 0}
+	}
+}
 minetest.register_on_joinplayer(function(player)
- hit = 
-	player:hud_add({
-	hud_elem_type = "image",
-	text = "rangedweapons_empty_icon.png",
-	scale = {x = 2, y = 2},
-	position = {x = 0.5, y = 0.5},
-	offset = {x = 0, y = 0},
-	alignment = {x = 0, y = 0}
-	})
-scope_hud = 
-	player:hud_add({
-	hud_elem_type = "image",
-	position = { x=0.5, y=0.5 },
-	scale = { x=-100, y=-100 },
-	text = "rangedweapons_empty_icon.png",
-	})
+	local player_name = player:get_player_name()
+	rangedweapons_player_data[player_name] = {}
 end)
+minetest.register_on_leaveplayer(function(player)
+	local player_name = player:get_player_name()
+	rangedweapons_player_data[player_name] = nil
+end)
+function rangedweapons_set_hud(player, hudname, show) --show also serves to transport the right texture for hithud
+	local data = rangedweapons_player_data[player:get_player_name()]
+	if data[hudname] and not show then
+		player:hud_remove(data[hudname])
+		data[hudname] = nil
+	end
+	if show then
+		if hudname == "hithud" then
+			hud_definitions[hudname].text = show
+		end
+		if data[hudname] then
+			player:hud_change(data[hudname],"text",hud_definitions[hudname].text)
+		else
+			data[hudname] = player:hud_add(hud_definitions[hudname])
+		end
+	end
+end
 
 	local timer = 0
 minetest.register_globalstep(function(dtime)
 	timer = timer + dtime;
 	if timer >= 1.0 then
 	for _, player in pairs(minetest.get_connected_players()) do
-player:hud_change(hit, "text", "rangedweapons_empty_icon.png")
+	rangedweapons_set_hud(player, "hithud",false)
 	timer = 0
 			end
 			end
