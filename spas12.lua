@@ -53,7 +53,7 @@ minetest.register_tool("rangedweapons:spas12_uld", {
 	inventory_image = "rangedweapons_spas12.png",
 	groups = {not_in_creative_inventory = 1},
 	on_use = function(itemstack, user)
-		minetest.sound_play("rangedweapons_empty", {pos = user:get_pos()})
+		minetest.sound_play("rangedweapons_empty", {pos = user:get_pos()}, true)
 	end,
 on_secondary_use = function(itemstack, user, pointed_thing)
 eject_shell(itemstack,user,"rangedweapons:spas12_rld",0.6,"rangedweapons_shotgun_reload_a","rangedweapons:empty_shell")

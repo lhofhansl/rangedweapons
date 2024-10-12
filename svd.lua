@@ -9,7 +9,7 @@ minetest.register_tool("rangedweapons:svd_uld", {
 	inventory_image = "rangedweapons_svd.png",
 	weapon_zoom = 9,
 	on_use = function(itemstack, user)
-		minetest.sound_play("rangedweapons_empty", {pos = user:get_pos()})
+		minetest.sound_play("rangedweapons_empty", {pos = user:get_pos()}, true)
 	end,
 on_secondary_use = function(itemstack, user, pointed_thing)
 eject_shell(itemstack,user,"rangedweapons:svd_rld",1.0,"rangedweapons_rifle_reload_a","rangedweapons:empty_shell")

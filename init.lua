@@ -34,24 +34,6 @@ local function update_ammo_counter_on_gun(gunMeta)
 	gunMeta:set_string("count_meta", tostring(gunMeta:get_int("RW_bullets")))
 end
 
-
-make_sparks = function(pos)
-minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75})
-	for i=1,9 do
-	minetest.add_particle({
-		pos = pos, 
-		velocity = {x=math.random(-6.0,6.0),  y=math.random(-10.0,15.0),  z=math.random(-6.0,6.0)},
-          	acceleration = {x=math.random(-9.0,9.0), y=math.random(-15.0,-3.0), z=math.random(-9.0,9.0)},
-		expirationtime = 1.0,
-		size = math.random(1,2),
-		collisiondetection = true,
-		vertical = false,
-		texture = "rangedweapons_spark.png",
-		glow = 25,
-	})
-end
-end
-
 rangedweapons_reload_gun = function(itemstack, player)
 
 local GunCaps = itemstack:get_definition().RW_gun_capabilities
@@ -61,7 +43,7 @@ if GunCaps ~= nil then
    gun_unload_sound = GunCaps.gun_unload_sound or ""
 end
 
-minetest.sound_play(gun_unload_sound, {pos = player:get_pos()})
+minetest.sound_play(gun_unload_sound, {pos = player:get_pos()}, true)
 
 
 local gun_reload = 0.25
@@ -157,7 +139,7 @@ if GunCaps ~= nil then
 gun_unload_sound = GunCaps.gun_unload_sound or ""
 end
 
-minetest.sound_play(gun_unload_sound, {pos = player:get_pos()})
+minetest.sound_play(gun_unload_sound, {pos = player:get_pos()}, true)
 
 local gun_reload = 0.25
 
@@ -325,7 +307,7 @@ rangedweapons_shoot_gun = function(itemstack, player)
 
 if minetest.find_node_near(player:get_pos(), 10,"rangedweapons:antigun_block")
 then
-minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()})
+minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()}, true)
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","Guns are prohibited in this area!"))
 
 else
@@ -505,7 +487,7 @@ rangedweapons_shoot_powergun = function(itemstack, player)
 
 if minetest.find_node_near(player:get_pos(), 10,"rangedweapons:antigun_block")
 then
-minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()})
+minetest.sound_play("rangedweapons_empty", {pos = player:get_pos()}, true)
    minetest.chat_send_player(player:get_player_name(), "" ..core.colorize("#ff0000","Guns are prohibited in this area!"))
 else
 local power_cooldown = 0
@@ -617,7 +599,7 @@ rangedweapons_launch_projectile = function(player,projNum,projDmg,projEnt,visual
 		local svertical = player:get_look_vertical()
 
 		if pos and dir and yaw then
-		minetest.sound_play(shoot_sound, {pos = pos, max_hear_distance = 500})
+		minetest.sound_play(shoot_sound, {pos = pos, max_hear_distance = 500}, true)
 		pos.y = pos.y + 1.45
 
 	if has_shell > 0 and minetest.settings:get_bool("rangedweapons_animate_empty_shells", true) then
@@ -692,7 +674,7 @@ local gunMeta = itemstack:get_meta()
 local bulletStack = ItemStack({name = gunMeta:get_string("RW_ammo_name")})
 
 		local pos = player:get_pos()
-minetest.sound_play(rldsound, {pos = pos})
+minetest.sound_play(rldsound, {pos = pos}, true)
 		local dir = player:get_look_dir()
 		local yaw = player:get_look_horizontal()
 		if pos and dir and yaw then
@@ -843,12 +825,12 @@ rangedweapons_empty_shell.on_step = function(self, dtime, pos)
 	local vel = self.object:get_velocity()
 	local acc = self.object:get_acceleration()
 	self.object:set_velocity({x=vel.x*-0.3, y=vel.y*-0.75, z=vel.z*-0.3})
-			minetest.sound_play("rangedweapons_shellhit", {pos = self.lastpos, gain = 0.8})
+			minetest.sound_play("rangedweapons_shellhit", {pos = self.lastpos, gain = 0.8}, true)
 	self.object:set_acceleration({x=acc.x, y=acc.y, z=acc.z})
 			end end
 	end
 	if self.timer > 1.69 then
-			minetest.sound_play("rangedweapons_bulletdrop", {pos = self.lastpos, gain = 0.8})
+			minetest.sound_play("rangedweapons_bulletdrop", {pos = self.lastpos, gain = 0.8}, true)
 		self.object:remove()
 
 	end

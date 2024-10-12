@@ -125,7 +125,7 @@ end
 end 
 
 
-minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
+minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0}, true)
 
 if ignite > 0 then
 
@@ -150,7 +150,7 @@ if string.find(minetest.get_node(moveresult.collisions[1].node_pos).name,"door_w
 
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
 minetest.add_item(moveresult.collisions[1].node_pos, "default:wood 5")
-minetest.sound_play("rangedweapons_woodbreak",{pos = moveresult.collisions[1].node_pos})
+minetest.sound_play("rangedweapons_woodbreak",{pos = moveresult.collisions[1].node_pos}, true)
 
 end end
 
@@ -160,20 +160,36 @@ local nodeName = minetest.get_node(moveresult.collisions[1].node_pos).name
 
 	if nodeName == "default:glass" then
 	minetest.swap_node(moveresult.collisions[1].node_pos, {name = "rangedweapons:broken_glass"})
-minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
+minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos}, true)
 	end
 	if   nodeName == "xpanes:pane" or nodeName == "xpanes:pane_flat" then
 		minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
 		if math.floor(math.random()*3)==0 then minetest.add_item(moveresult.collisions[1].node_pos, "vessels:glass_fragments") end
-		minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
+		minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos}, true)
 	end
 if string.find(nodeName,"door_glass") then
 minetest.swap_node(moveresult.collisions[1].node_pos, {name = "air"})
 minetest.add_item(moveresult.collisions[1].node_pos, "vessels:glass_fragments 5")
-minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos})
+minetest.sound_play("glass_break",{pos = moveresult.collisions[1].node_pos}, true)
 	end
 end
 
+local function make_sparks(pos)
+	minetest.sound_play("rengedweapons_ricochet", {pos = pos, gain = 0.75}, true)
+		for i=1,9 do
+		minetest.add_particle({
+			pos = pos, 
+			velocity = {x=math.random(-6.0,6.0),  y=math.random(-10.0,15.0),  z=math.random(-6.0,6.0)},
+				acceleration = {x=math.random(-9.0,9.0), y=math.random(-15.0,-3.0), z=math.random(-9.0,9.0)},
+			expirationtime = 1.0,
+			size = math.random(1,2),
+			collisiondetection = true,
+			vertical = false,
+			texture = "rangedweapons_spark.png",
+			glow = 25,
+		})
+	end
+end
 
 if minetest.get_item_group(minetest.get_node(moveresult.collisions[1].node_pos).name, "level") > 1  then
    if minetest.settings:get_bool("rangedweapons_bullet_ricochet", true) then
@@ -224,7 +240,7 @@ if math.random(1,100) <= nodePen then
 	})
 	end
     end
-minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
+minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0}, true)
 self.object:set_properties({collisionbox = {0,0,0,0,0,0}})
 --minetest.chat_send_all("hit")
 self.object:set_velocity(moveresult.collisions[1].old_velocity)
@@ -232,7 +248,7 @@ else
 
 if minetest.get_item_group(minetest.get_node(moveresult.collisions[1].node_pos).name, "leaves") > 0  then
 
-minetest.sound_play("default_dig_snappy", {pos = self.object:get_pos(), gain = 1.5})
+minetest.sound_play("default_dig_snappy", {pos = self.object:get_pos(), gain = 1.5}, true)
 
 if use_particles then
 for i = 1,math.random(3,6) do
@@ -360,7 +376,7 @@ if math.random(1,100) <= mobPen then
 	})
 	end
     end
-minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0})
+minetest.sound_play("default_dig_cracky", {pos = self.object:get_pos(), gain = 1.0}, true)
 self.object:set_properties({collisionbox = {0,0,0,0,0,0}})
 self.object:set_velocity(moveresult.collisions[1].old_velocity)
 else
