@@ -20,7 +20,7 @@ rangedweapons_grenade_pin.on_step = function(self, dtime, pos)
 	if self.lastpos.x ~= nil then
 		if minetest.registered_nodes[node.name].walkable then
 		self.object:remove()
-			minetest.sound_play("rangedweapons_bulletdrop", {pos = self.lastpos, gain = 0.8})
+			minetest.sound_play("rangedweapons_bulletdrop", {pos = self.lastpos, gain = 0.8}, true)
 			end
 	end
 	self.lastpos= {x = pos.x, y = pos.y, z = pos.z}
@@ -56,7 +56,7 @@ then
 		end
 
 		gtimer = 0
-	minetest.sound_play("rangedweapons_reload_a", {pos = user:get_pos()})
+	minetest.sound_play("rangedweapons_reload_a", {pos = user:get_pos()}, true)
 		itemstack = "rangedweapons:hand_grenade_nopin"
 local pos = user:get_pos()
 pos.y = pos.y + 1.5

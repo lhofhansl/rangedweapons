@@ -17,7 +17,7 @@ if  inv:contains_item("main", "rangedweapons:power_particle 40") then
 			pos.y = pos.y + 1.5
 			local obj = minetest.add_entity(pos, "rangedweapons:forceblast")
 			if obj then
-				minetest.sound_play("rangedweapons_rocket", {object=obj})
+				minetest.sound_play("rangedweapons_rocket", {object=obj}, true)
 				obj:set_velocity({x=dir.x * 60, y=dir.y * 60, z=dir.z * 60})
 
 				obj:set_yaw(yaw - math.pi/2)
