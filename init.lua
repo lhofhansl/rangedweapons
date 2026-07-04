@@ -139,21 +139,9 @@ function rangedweapons_reload_gun(itemstack, player)
 				local obj = core.add_entity(pos,"rangedweapons:mag")
 				if obj then
 					obj:set_properties({textures = {GunCaps.gun_magazine}})
-					obj:set_velocity({
-						x = dir.x * 2,
-						y = dir.y * 2,
-						z = dir.z * 2
-					})
-					obj:set_acceleration({
-						x = 0,
-						y = -5,
-						z = 0
-					})
-					obj:set_rotation({
-						x = 0,
-						y = yaw - math.pi / 2,
-						z = 0
-					})
+					obj:set_velocity({x = dir.x * 2, y = dir.y * 2, z = dir.z * 2})
+					obj:set_acceleration({x = 0, y = -5, z = 0})
+					obj:set_rotation({x = 0, y = yaw - math.pi / 2, z = 0})
 				end
 			end
 		end
@@ -640,21 +628,9 @@ function rangedweapons_launch_projectile(player, projNum, projDmg, projEnt,
 
 		if has_shell > 0 and core.settings:get_bool("rangedweapons_animate_empty_shells", true) then
 			local shl = core.add_entity(pos, shellEnt)
-			shl:set_velocity({
-				x = dir.x * -10,
-				y = dir.y * -10,
-				z = dir.z * -10
-			})
-			shl:set_acceleration({
-				x = dir.x * -5,
-				y = -10,
-				z = dir.z * -5
-			})
-			shl:set_rotation({
-				x = 0,
-				y = yaw - math.pi / 2,
-				z = -svertical
-			})
+			shl:set_velocity({x = dir.x * -10, y = dir.y * -10, z = dir.z * -10})
+			shl:set_acceleration({x = dir.x * -5, y = -10, z = dir.z * -5})
+			shl:set_rotation({x = 0, y = yaw - math.pi / 2, z = -svertical})
 			shl:set_properties({
 				textures = {shellTexture},
 				visual = shellVisual
@@ -711,11 +687,7 @@ function rangedweapons_launch_projectile(player, projNum, projDmg, projEnt,
 					z = dir.z * combined_velocity + math.random(-acc, acc)
 				})
 				obj:set_acceleration({x = 0, y = -gravity, z = 0})
-				obj:set_rotation({
-					x = 0,
-					y = yaw - math.pi / 2,
-					z = -svertical
-				})
+				obj:set_rotation({x = 0, y = yaw - math.pi / 2, z = -svertical})
 			end
 		end
 	end
@@ -754,16 +726,8 @@ function eject_shell(itemstack, player, rld_item, rld_time, rldsound, shell)
 		end
 
 		if obj then
-			obj:set_velocity({
-				x = dir.x * -10,
-				y = dir.y * -10,
-				z = dir.z * -10
-			})
-			obj:set_acceleration({
-				x=dir.x * -5,
-				y = -10,
-				z = dir.z * -5
-			})
+			obj:set_velocity({x = dir.x * -10, y = dir.y * -10, z = dir.z * -10})
+			obj:set_acceleration({x = dir.x * -5, y = -10, z = dir.z * -5})
 			obj:set_yaw(yaw - math.pi / 2)
 		end
 	end
@@ -898,11 +862,7 @@ rangedweapons_empty_shell.on_step = function(self, dtime, _)
 				local vel = self.object:get_velocity()
 				local acc = self.object:get_acceleration()
 
-				self.object:set_velocity({
-					x = vel.x * -0.3,
-					y = vel.y * -0.75,
-					z = vel.z * -0.3
-				})
+				self.object:set_velocity({x = vel.x * -0.3, y = vel.y * -0.75, z = vel.z * -0.3})
 
 				core.sound_play("rangedweapons_shellhit", {pos = self.lastpos, gain = 0.8}, true)
 				self.object:set_acceleration({x = acc.x, y = acc.y, z = acc.z})
